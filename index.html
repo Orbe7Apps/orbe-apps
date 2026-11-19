@@ -150,6 +150,8 @@ section { padding-block: 110px; }
 .vivo-pasos li::before { content: counter(v); width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font: 800 1.1rem var(--display); background: var(--surface); border: 1px solid var(--line); color: var(--morado); }
 .vivo-pasos b { display: block; font-size: 1.05rem; }
 .vivo-pasos span { color: var(--muted); font-size: .98rem; }
+.vivo.espejo { grid-template-columns: 1.1fr .9fr; }
+.vivo.espejo > .rev:first-child { order: 2; }
 
 /* Planes */
 .planes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
@@ -259,6 +261,8 @@ footer a { color: var(--luz); }
 
 @media (max-width: 960px) {
   .hero, .proyecto, .vivo, .cierre-in { grid-template-columns: 1fr; }
+  .vivo.espejo { grid-template-columns: 1fr; }
+  .vivo.espejo > .rev:first-child { order: 0; }
   .proyecto.inverso .texto { order: 0; }
   .planes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .micro-grid { grid-template-columns: 1fr 1fr; }
@@ -665,6 +669,23 @@ footer a { color: var(--ink); }
         <li class="rev" style="--d:.3s"><div><b>Te llega a WhatsApp</b><span>Un solo mensaje con todo y el total. Tú cambias precios desde tu teléfono.</span></div></li>
       </ol>
       <a class="btn btn-luz solo-movil rev" href="catalogos/dulce-hogar/" target="_blank" rel="noopener" style="margin-top:24px;width:100%;justify-content:center">Abrir el catálogo de ejemplo</a>
+    </div>
+  </div>
+</section>
+
+<section id="reservas" style="padding-top:20px">
+  <div class="wrap vivo espejo">
+    <div class="rev"><div class="tel-vivo"><div class="ventana"><iframe src="reservas/barberia-el-filo/" title="Página de reservas de ejemplo de Barbería El Filo" loading="lazy"></iframe></div></div></div>
+    <div>
+      <div class="eti rev">Para negocios de citas</div>
+      <h2 class="rev" style="--d:.08s;margin-top:16px">Tus clientes reservan solos. Tú sigues atendiendo.</h2>
+      <p class="rev" style="--d:.14s;color:var(--muted);font-size:1.12rem;margin-top:18px">Una página de reservas con tus servicios, tu equipo y tu horario. Para barberías, uñas, peluquerías y consultorios. Pruébala, funciona de verdad.</p>
+      <ol class="vivo-pasos">
+        <li class="rev" style="--d:.18s"><div><b>Elige servicio y con quién</b><span>Ve precios y duración, y escoge a su barbero o el que esté libre.</span></div></li>
+        <li class="rev" style="--d:.24s"><div><b>Ve solo las horas libres</b><span>Sin preguntar "¿tienes espacio?". Solo aparecen los horarios donde cabe su cita.</span></div></li>
+        <li class="rev" style="--d:.3s"><div><b>Te llega la cita a WhatsApp</b><span>Un mensaje con servicio, día, hora, total y forma de pago. Tú solo confirmas.</span></div></li>
+      </ol>
+      <a class="btn btn-luz solo-movil rev" href="reservas/barberia-el-filo/" target="_blank" rel="noopener" style="margin-top:24px;width:100%;justify-content:center">Abrir la página de reservas de ejemplo</a>
     </div>
   </div>
 </section>
