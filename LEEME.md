@@ -8,6 +8,7 @@ Sitio de Orbe Apps (apps para negocios pequeños de Latinoamérica), publicado c
 | `index.html`, `img/`, `logo.svg`, `portada.png` | Página web de Orbe Apps (servicios y precios) | `/orbe-apps/` |
 | `apps/` | Las 4 microapps: Inventario, Agenda, Fiados y Presupuesto | `/orbe-apps/apps/` |
 | `catalogos/` | Catálogos con pedidos por WhatsApp (base y ejemplo Dulce Hogar) | `/orbe-apps/catalogos/<negocio>/` |
+| `reservas/` | Páginas de reservas por WhatsApp (base y ejemplo Barbería El Filo) | `/orbe-apps/reservas/<negocio>/` |
 | `contenido/` | Publicaciones y reels de Instagram, con sus fuentes y herramientas | (no se enlaza desde la web) |
 
 ## Demo y versión completa de las microapps
