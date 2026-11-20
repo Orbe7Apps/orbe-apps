@@ -52,4 +52,4 @@ Settings → Pages → Deploy from a branch → `main` / `(root)`.
 
 **Otros proyectos**
 - Orbe Negocios (demo): https://orbe7apps.github.io/orbe-negocios/
-- Orbe Finanzas: https://orbe7apps.github.io/misgastos/
+- Orbe Finanzas: https://orbe7apps.github.io/Orbe-Finanzas/
