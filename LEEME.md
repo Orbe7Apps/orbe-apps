@@ -28,3 +28,28 @@ Microapp $17 · Catálogo con pedidos $49 · Página de negocio $89 · App a med
 
 ## Publicar
 Settings → Pages → Deploy from a branch → `main` / `(root)`.
+
+## Enlaces para abrir todo
+**Web**
+- Página de ventas: https://orbe7apps.github.io/orbe-apps/
+- Lista de microapps: https://orbe7apps.github.io/orbe-apps/apps/
+
+**Microapps (demo; con código se vuelven la versión completa)**
+- Inventario simple: https://orbe7apps.github.io/orbe-apps/apps/inventario/
+- Agenda de citas: https://orbe7apps.github.io/orbe-apps/apps/agenda/
+- Cuaderno de fiados: https://orbe7apps.github.io/orbe-apps/apps/fiados/
+- Presupuesto del mes: https://orbe7apps.github.io/orbe-apps/apps/presupuesto/
+
+**Muestras para clientes**
+- Catálogo Dulce Hogar: https://orbe7apps.github.io/orbe-apps/catalogos/dulce-hogar/
+- Reservas Barbería El Filo: https://orbe7apps.github.io/orbe-apps/reservas/barberia-el-filo/
+
+**Contenido de Instagram**
+- Carrusel "5 cosas que tu bio necesita": https://github.com/Orbe7Apps/orbe-apps/tree/main/contenido/consejo-bio-instagram
+- Carrusel "Antes y después de un pedido": https://github.com/Orbe7Apps/orbe-apps/tree/main/contenido/antes-y-despues-pedido
+- Reel "Sobre nosotros": https://github.com/Orbe7Apps/orbe-apps/tree/main/contenido/reel-sobre-nosotros
+- Reel "Demo Orbe Negocios": https://github.com/Orbe7Apps/orbe-apps/tree/main/contenido/reel-demo-orbe-negocios
+
+**Otros proyectos**
+- Orbe Negocios (demo): https://orbe7apps.github.io/orbe-negocios/
+- Orbe Finanzas: https://orbe7apps.github.io/misgastos/
