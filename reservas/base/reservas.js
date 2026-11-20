@@ -2,7 +2,12 @@
 // Lee los datos del negocio de window.NEGOCIO (negocio.js): servicios, barberos o profesionales, horario y WhatsApp.
 // Con whatsapp vacío funciona como muestra: los horarios ocupados son de ejemplo y al reservar muestra el mensaje en vez de abrir WhatsApp.
 ['gesturestart', 'gesturechange'].forEach(t => document.addEventListener(t, e => e.preventDefault(), { passive: false }));
-if (window.top !== window.self) document.documentElement.classList.add('incrustado');
+// Dentro del teléfono de la página de Orbe Apps: se achica con zoom para verse como en un teléfono de 390 px
+if (window.top !== window.self) {
+  document.documentElement.classList.add('incrustado');
+  const ajustar = () => { document.documentElement.style.zoom = innerWidth < 390 ? innerWidth / 390 : ''; };
+  ajustar(); addEventListener('resize', ajustar);
+}
 (() => {
   const N = window.NEGOCIO, $ = s => document.querySelector(s);
   const muestra = !N.whatsapp, paso = N.intervalo || 30;
