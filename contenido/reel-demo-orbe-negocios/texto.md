@@ -3,7 +3,7 @@
 `reel.mp4`: 1080x1920, 17 s, con música original. `reel-portada.png` es la portada sugerida.
 
 ## Escenas
-1. Mira cómo va tu día (pantalla Hoy).
+1. «Nuestra app · Orbe Negocios» arriba. Mira cómo va tu día (pantalla Hoy).
 2. Cobra con las formas de pago de tu país (Nueva venta).
 3. Inventario con aviso de lo que se acaba.
 4. Reportes y cierre del día.
