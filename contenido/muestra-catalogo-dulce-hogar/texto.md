@@ -9,7 +9,7 @@ https://orbe7apps.github.io/orbe-apps/catalogos/dulce-hogar/
 2. 3,4 a 7,4 s: el teléfono con el catálogo llega girando y dos tortas saltan de la pantalla hacia ti. Voz: «Con un catálogo, tu cliente ve todo, con foto y precio.»
 3. 7,4 a 9,4 s: el teléfono voltea como una carta (lista de productos) y saltan los «+1». 9,4 a 11,6 s: voltea otra vez y la cuenta (total $74) se levanta de la pantalla. Voz: «Elige lo que quiere, y ve el total al instante.»
 4. 11,6 a 15,8 s: el teléfono entra dando vuelta y media, el mensaje del pedido sale hacia ti y aparece un sello verde con chispas. Voz: «¡Y a ti te llega el pedido completo!» y «Solo confirmas.»
-5. 15,8 a 22 s: carrusel 3D con las pantallas de la muestra, «Tu catálogo, listo en 5 días», $49 pago único, sin comisiones, muestra gratis, «Escríbenos por DM», @orbe.apps. Voz: «Tu catálogo, listo en cinco días. ¡Escríbenos por mensaje directo!»
+5. 15,8 a 22 s: carrusel 3D con las pantallas de la muestra, «Tu catálogo, listo en 5 días», «Muestra gratis», «Con tus productos y tu marca», (sin precios de Orbe Apps) «Escríbenos por DM», @orbe.apps. Voz: «Tu catálogo, listo en cinco días. ¡Escríbenos por mensaje directo!»
 
 ## Texto del post
 ¿Te escriben "precio?" todo el día? 😅
@@ -18,7 +18,7 @@ Así funciona un catálogo con pedidos: tu cliente ve tus productos con foto y p
 
 Este es un catálogo de muestra para una repostería. El tuyo lleva tus productos, tus precios y tu marca.
 
-Listo en 5 días, 49 USD, pago único y sin comisiones. Escríbenos MUESTRA por DM y te armamos una gratis con tus productos.
+Listo en 5 días y sin comisiones. Escríbenos MUESTRA por DM y te armamos una gratis con tus productos.
 
 #catalogodigital #emprendedores #reposteria #negocioslatinos
 — Orbe Apps
