@@ -11,7 +11,7 @@ Versión nueva e independiente. El reel anterior sigue intacto en `../reel-tu-ne
 ## Qué cambió (dirección de arte)
 - **Sin estética espacial:** se eliminaron las estrellas, el cielo y los planetas decorativos. El planeta aparece solo como logotipo oficial, en la apertura y el cierre.
 - **Fondo de estudio:** degradado oscuro, una luz principal morada muy suave que acompaña a la cámara, un horizonte tenue y dos elipses finas al 9 % de opacidad, que hacen eco del anillo del logo y giran despacio (parallax discreto).
-- **Dispositivos realistas:** el teléfono tiene borde metálico, botones laterales, reflejo del cristal y reflejo en el suelo; la computadora, reflejo y sombra de contacto. Sin muesca.
+- **Dispositivos realistas:** el teléfono tiene borde metálico, botones laterales, reflejo del cristal y sombra profunda; la computadora, borde y sombra. Sin muesca. (El reflejo en el suelo se quitó; ver la corrección más abajo.)
 - **Tipografía:** titulares grandes de pocas palabras que suben dentro de su propio marco (revelado con máscara). Una idea por escena, alineada con lo que dice la voz:
   - «Tu negocio necesita más que una presencia digital.»
   - «Necesita herramientas que funcionen.»
@@ -33,6 +33,15 @@ Versión nueva e independiente. El reel anterior sigue intacto en `../reel-tu-ne
 - Sin cortes de audio: el único tramo casi en silencio es la última décima de segundo (salida suave).
 - Revisión completa a 2 cuadros por segundo, más el primer segundo y el último a 6 cuadros por segundo y la primera transición a 8 cuadros por segundo. Se corrigieron un primer cuadro casi vacío y un instante vacío a los 3,5 s.
 - Texto dentro de la zona segura (entre y=230 y y=1480, con 150 px libres a la derecha en los titulares). El cierre está centrado.
+
+## Corrección de cuadros cortados (revisión posterior)
+Detección automática sobre los 900 cuadros, comparando cada uno con el siguiente, buscando caídas bruscas de contenido y parpadeos de un solo cuadro. Luego revisión manual cuadro a cuadro.
+- **Dispositivos que desaparecían (19,77 s en adelante):** la luz de fondo estaba dentro del mismo espacio 3D que la computadora y el teléfono. Cuando la cámara empezaba su giro leve, el navegador la dibujaba delante y los tapaba casi por completo. Ahora la luz está en una capa plana aparte.
+- **Reflejo en el suelo:** se quitó, porque con los movimientos 3D producía recortes. Los dispositivos conservan su sombra.
+- **Pantalla que se encendía de golpe (3,8 s):** ahora se enciende de forma gradual en medio segundo.
+- **Acercamientos bruscos:** los de los toques del catálogo y del panel «Vendido hoy» ahora son más largos y con menos zoom, y la vuelta atrás ya no dura 0,3 s.
+- **Salida de los dispositivos antes del cierre:** ya no se desvanecen de golpe en el último cuadro.
+- **Resultado:** sin caídas de contenido y sin parpadeos de un cuadro. Los cambios más grandes entre cuadros son movimientos continuos de cámara, comprobados cuadro a cuadro.
 
 ## Archivos
 `reel-2-0-orbe-apps.mp4`, `portada.png`, `subtitulos.srt`, `texto.md`, `alt.md`, `fuente/reel.html`, `fuente/voz/`, `fuente/voz-en-off.wav`, `fuente/musica.wav`, `fuente/efectos.wav` y `fuente/img/` (copias de los recursos reales).

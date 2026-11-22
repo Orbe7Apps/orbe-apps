@@ -2,7 +2,7 @@
 <html lang="es"><head><meta charset="utf-8">
 <!-- REEL 2.0 · Orbe Apps — rediseño de dirección de arte (30 s, 1080x1920, 30 fps).
      Proyecto independiente: el reel anterior sigue intacto en ../reel-tu-negocio-nuestra-tecnologia/.
-     Sin estética espacial: fondo oscuro de estudio, luz suave, líneas geométricas finas, dispositivos con reflejo.
+     Sin estética espacial: fondo oscuro de estudio, luz suave, líneas geométricas finas. (Sin -webkit-box-reflect: con 3D corta los dispositivos en algunos cuadros.)
      Voz: la misma de ElevenLabs (fuente/voz/frase1..7.wav), con inicio en 0,35 · 3,85 · 6,5 · 13,0 · 17,15 · 21,5 · 26,2 s.
      Animación: ../../herramientas/motor2.js (textos) + ../../herramientas/motor3d.js (cámara, dispositivos, desenfoque).
      Grabar: node herramientas/grabar-reel.js reel-2-0-orbe-apps/fuente/reel.html video.mp4 30 29.6 -->
@@ -17,6 +17,7 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
 .foco { width: 1500px; height: 1500px; border-radius: 50%; background: radial-gradient(circle, rgba(106,92,242,.30) 0%, rgba(106,92,242,.10) 35%, transparent 65%); }
 .suelo-luz { position: absolute; left: -200px; right: -200px; top: 1560px; height: 600px; background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(143,132,255,.10), transparent 70%); }
 .lineas { position: absolute; inset: 0; }
+.fondo-luz { position: absolute; inset: 0; }
 .mundo { position: absolute; inset: 0; perspective: 2200px; perspective-origin: 50% 50%; transform-style: preserve-3d; }
 .k3 { position: absolute; opacity: 0; transform-style: preserve-3d; will-change: transform, opacity; }
 .textos { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
@@ -36,8 +37,7 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
 /* Teléfono: borde metálico, cristal y reflejo en el suelo */
 .tel { width: 452px; height: 980px; border-radius: 70px; padding: 10px;
   background: linear-gradient(135deg, #5d5a7a 0%, #26243a 18%, #121120 50%, #26243a 82%, #4f4c6b 100%);
-  box-shadow: 0 90px 140px -60px rgba(0,0,0,.95), 0 40px 60px -40px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.18), 0 0 0 1px rgba(0,0,0,.6);
-  -webkit-box-reflect: below 26px linear-gradient(transparent 82%, rgba(255,255,255,.10)); }
+  box-shadow: 0 90px 140px -60px rgba(0,0,0,.95), 0 40px 60px -40px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.18), 0 0 0 1px rgba(0,0,0,.6); }
 .tel::before, .tel::after { content: ""; position: absolute; right: -4px; width: 4px; border-radius: 0 3px 3px 0; background: linear-gradient(90deg, #3a3854, #5d5a7a); }
 .tel::before { top: 230px; height: 110px; } .tel::after { top: 360px; height: 70px; }
 .tel .pantalla { position: relative; width: 432px; height: 960px; border-radius: 61px; overflow: hidden; background: #0b0a14; }
@@ -51,7 +51,7 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
 .vidrio { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(125deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,0) 32%); z-index: 4; pointer-events: none; }
 .toque { width: 66px; height: 66px; margin: -33px 0 0 -33px; border-radius: 50%; border: 3px solid rgba(255,255,255,.95); background: rgba(143,132,255,.25); box-shadow: 0 0 0 6px rgba(106,92,242,.22), 0 6px 18px rgba(0,0,0,.3); z-index: 5; }
 /* Computadora */
-.lap { width: 900px; -webkit-box-reflect: below 18px linear-gradient(transparent 86%, rgba(255,255,255,.08)); }
+.lap { width: 900px; }
 .lap .marco { position: relative; width: 900px; height: 578px; border-radius: 28px; padding: 18px 18px 24px; background: linear-gradient(160deg, #3c3956, #15142a 40%, #0d0c18);
   box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 70px 120px -50px rgba(0,0,0,.95); }
 .lap .marco .pantalla { position: relative; width: 864px; height: 536px; border-radius: 8px; overflow: hidden; background: #f3f1fb; }
@@ -74,21 +74,25 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
   <line x1="0" y1="1640" x2="1080" y2="1640" stroke="#c9c0ff" stroke-opacity=".07" stroke-width="1"/>
 </svg>
 
-<div class="mundo">
+<!-- Luz principal en una capa plana aparte: dentro del espacio 3D se cruzaba con los dispositivos y los tapaba -->
+<div class="fondo-luz">
   <div class="k3 foco" style="left:-210px;top:300px" data-kf='[[0,{"o":0.7,"s":0.85}],[3.8,{"o":1,"s":1}],[8,{"x":-40,"y":120}],[13,{"x":60,"y":-40}],[17,{"x":-20,"y":40}],[20,{"x":120,"y":120,"s":1.15}],[25.6,{"x":40,"y":60}],[27,{"x":0,"y":-260,"s":0.9}],[30,{"y":-280}]]'></div>
+</div>
+
+<div class="mundo">
 
   <!-- CÁMARA: todos los movimientos de acercamiento, paneo y órbita pasan por aquí -->
-  <div class="k3 camara" style="left:0;top:0;width:1080px;height:1920px" data-kf='[[0,{"o":1}],[5.4,{"s":1}],[7.0,{"s":1.1,"y":-40}],[8.9,{"s":1.12,"y":-60}],[9.4,{"s":1.3,"x":26,"y":-378,"e":"suave"}],[11.2,{"s":1.3,"x":26,"y":-378}],[11.75,{"s":1.12,"x":0,"y":-60,"e":"suave"}],[12.45,{"s":1,"x":0,"y":0,"e":"suave"}],[13.35,{"s":1}],[13.85,{"s":1.4,"x":126,"y":249,"e":"suave"}],[14.35,{"s":1.4,"x":126,"y":249}],[14.65,{"s":1.04,"x":0,"y":0,"e":"suave"}],[17.7,{"s":1}],[18.2,{"s":1.06,"x":30,"e":"in"}],[19.6,{"s":1,"x":0,"e":"out"}],[21.5,{"ry":-3}],[25.4,{"s":1.04,"ry":3}],[26.3,{"s":1,"ry":0}]]'>
+  <div class="k3 camara" style="left:0;top:0;width:1080px;height:1920px" data-kf='[[0,{"o":1}],[5.4,{"s":1}],[7.0,{"s":1.1,"y":-40}],[8.55,{"s":1.12,"y":-60}],[9.45,{"s":1.3,"x":26,"y":-378,"e":"suave"}],[11.0,{"s":1.3,"x":26,"y":-378}],[11.85,{"s":1.12,"x":0,"y":-60,"e":"suave"}],[12.55,{"s":1,"x":0,"y":0,"e":"suave"}],[13.3,{"s":1}],[14.05,{"s":1.28,"x":115.2,"y":230.7,"e":"suave"}],[14.15,{"s":1.28,"x":115.2,"y":230.7}],[14.75,{"s":1.04,"x":0,"y":0,"e":"suave"}],[17.7,{"s":1}],[18.2,{"s":1.06,"x":30,"e":"in"}],[19.6,{"s":1,"x":0,"e":"out"}],[21.5,{"ry":-3}],[25.4,{"s":1.04,"ry":3}],[26.3,{"s":1,"ry":0}]]'>
 
     <!-- COMPUTADORA -->
-    <div class="k3 lap" style="left:90px;top:800px" data-kf='[[18.0,{"o":0,"x":620,"z":-260,"ry":-24,"b":4}],[18.8,{"o":1,"x":180,"z":-60,"ry":-12,"b":1.5,"e":"lin"}],[19.6,{"x":70,"z":0,"ry":-7,"b":0,"e":"out"}],[21.5,{"x":50,"ry":-4}],[25.4,{"x":0,"ry":4,"z":-30}],[26.4,{"o":0,"x":0,"y":520,"z":-320,"b":2,"e":"in"}]]'>
+    <div class="k3 lap" style="left:90px;top:800px" data-kf='[[18.0,{"o":0,"x":620,"z":-260,"ry":-24,"b":4}],[18.8,{"o":1,"x":180,"z":-60,"ry":-12,"b":1.5,"e":"lin"}],[19.6,{"x":70,"z":0,"ry":-7,"b":0,"e":"out"}],[21.5,{"x":50,"ry":-4}],[25.4,{"x":0,"ry":4,"z":-30}],[26.4,{"o":0,"x":0,"y":520,"z":-320,"b":2,"e":"suave"}]]'>
       <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-recorrido.webp" alt="" data-desliza='[[19.2,0],[25.6,-560]]'><div class="vidrio"></div></div></div><div class="base"></div></div>
 
     <!-- TELÉFONO: el mismo de principio a fin -->
-    <div class="k3 tel" style="left:314px;top:650px" data-kf='[[3.25,{"o":0,"y":760,"rx":22,"z":-200,"b":3}],[3.5,{"o":1,"y":600,"rx":20,"z":-180,"b":2.5,"e":"lin"}],[5.1,{"o":1,"y":0,"rx":4,"ry":-6,"z":0,"b":0,"e":"out"}],[9.0,{"ry":2,"rx":1}],[12.6,{"ry":-3,"z":30}],[13.3,{"ry":4,"z":30,"e":"suave"}],[16.9,{"ry":-2,"z":20}],[17.6,{"ry":3,"z":20,"e":"suave"}],[18.0,{"x":0,"y":0,"s":1,"ry":0,"z":0}],[18.7,{"x":-150,"y":60,"s":0.72,"z":120,"ry":10,"b":1.2,"e":"in"}],[19.4,{"x":-250,"y":110,"s":0.52,"z":220,"ry":14,"rx":2,"b":0,"e":"out"}],[21.5,{"x":-262,"y":108,"s":0.52,"ry":10,"z":230}],[25.4,{"x":-226,"y":102,"s":0.52,"ry":3,"z":210}],[26.4,{"o":0,"x":-226,"y":640,"z":-160,"b":2,"e":"in"}]]'>
+    <div class="k3 tel" style="left:314px;top:650px" data-kf='[[3.25,{"o":0,"y":760,"rx":22,"z":-200,"b":3}],[3.5,{"o":1,"y":600,"rx":20,"z":-180,"b":2.5,"e":"lin"}],[5.1,{"o":1,"y":0,"rx":4,"ry":-6,"z":0,"b":0,"e":"out"}],[9.0,{"ry":2,"rx":1}],[12.6,{"ry":-3,"z":30}],[13.3,{"ry":4,"z":30,"e":"suave"}],[16.9,{"ry":-2,"z":20}],[17.6,{"ry":3,"z":20,"e":"suave"}],[18.0,{"x":0,"y":0,"s":1,"ry":0,"z":0}],[18.7,{"x":-150,"y":60,"s":0.72,"z":120,"ry":10,"b":1.2,"e":"in"}],[19.4,{"x":-250,"y":110,"s":0.52,"z":220,"ry":14,"rx":2,"b":0,"e":"out"}],[21.5,{"x":-262,"y":108,"s":0.52,"ry":10,"z":230}],[25.4,{"x":-226,"y":102,"s":0.52,"ry":3,"z":210}],[26.4,{"o":0,"x":-226,"y":640,"z":-160,"b":2,"e":"suave"}]]'>
       <div class="pantalla">
         <!-- APP 1 · Catálogo Dulce Hogar (capturas reales; cada toque cambia solo lo que cambia en la app) -->
-        <div class="k3 app" data-kf='[[3.8,{"o":1}],[12.65,{"x":0,"s":1}],[13.0,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":-440,"s":0.9,"b":0,"e":"out"}],[13.36,{"o":0,"x":-440,"s":0.9}]]'>
+        <div class="k3 app" data-kf='[[3.6,{"o":0}],[4.15,{"o":1}],[12.65,{"x":0,"s":1}],[13.0,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":-440,"s":0.9,"b":0,"e":"out"}],[13.36,{"o":0,"x":-440,"s":0.9}]]'>
           <div class="largo"><img src="img/catalogo-dulce-hogar.webp" alt="" data-desliza='[[5.6,0],[6.6,0],[8.1,-960],[8.35,-960],[9.1,0]]'></div>
           <div class="k3 capa" data-kf='[[9.08,{"o":0}],[9.1,{"o":1}]]'><img src="img/catalogo-estado-a.webp" alt=""></div>
           <div class="k3 capa" data-kf='[[9.58,{"o":1}]]' data-clip='{"circulo":[168,674],"ks":[[9.58,0],[9.82,72]]}'><img src="img/catalogo-estado-b.webp" alt=""></div>
