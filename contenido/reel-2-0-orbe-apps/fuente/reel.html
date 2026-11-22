@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- REEL 2.0 · Orbe Apps — rediseño de dirección de arte (30 s, 1080x1920, 30 fps).
+     Proyecto independiente: el reel anterior sigue intacto en ../reel-tu-negocio-nuestra-tecnologia/.
+     Sin estética espacial: fondo oscuro de estudio, luz suave, líneas geométricas finas, dispositivos con reflejo.
+     Voz: la misma de ElevenLabs (fuente/voz/frase1..7.wav), con inicio en 0,35 · 3,85 · 6,5 · 13,0 · 17,15 · 21,5 · 26,2 s.
+     Animación: ../../herramientas/motor2.js (textos) + ../../herramientas/motor3d.js (cámara, dispositivos, desenfoque).
+     Grabar: node herramientas/grabar-reel.js reel-2-0-orbe-apps/fuente/reel.html video.mp4 30 29.6 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+:root { --noche: #0b0a14; --morado: #6a5cf2; --lila: #8f84ff; --lila-claro: #c9c0ff; --verde: #3ddc9f; --claro: #f4f3fb; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smoothing: antialiased;
+  background: linear-gradient(180deg, #0d0c18 0%, #0b0a14 45%, #090811 100%); }
+/* Fondo de estudio: luz principal suave + suelo + líneas geométricas finas (eco del anillo del logo) */
+.foco { width: 1500px; height: 1500px; border-radius: 50%; background: radial-gradient(circle, rgba(106,92,242,.30) 0%, rgba(106,92,242,.10) 35%, transparent 65%); }
+.suelo-luz { position: absolute; left: -200px; right: -200px; top: 1560px; height: 600px; background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(143,132,255,.10), transparent 70%); }
+.lineas { position: absolute; inset: 0; }
+.mundo { position: absolute; inset: 0; perspective: 2200px; perspective-origin: 50% 50%; transform-style: preserve-3d; }
+.k3 { position: absolute; opacity: 0; transform-style: preserve-3d; will-change: transform, opacity; }
+.textos { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+[data-a] { opacity: 0; will-change: transform, opacity; }
+/* Tipografía: titulares con máscara (cada línea sube dentro de su propio marco) */
+.bloque { position: absolute; left: 90px; right: 150px; }
+.bloque.centrado { left: 0; right: 0; text-align: center; }
+.ojo { font: 700 28px "Manrope"; letter-spacing: .22em; text-transform: uppercase; color: var(--lila-claro); display: flex; align-items: center; gap: 14px; }
+.bloque.centrado .ojo { justify-content: center; }
+.ojo i { width: 10px; height: 10px; border-radius: 50%; background: var(--verde); }
+.linea { display: block; overflow: hidden; padding-bottom: .08em; }
+.linea > span { display: inline-block; }
+.h1 { font: 800 100px/1.0 "Sora"; letter-spacing: -.05em; }
+.h2 { font: 800 82px/1.02 "Sora"; letter-spacing: -.045em; }
+.pie { font: 600 40px/1.3 "Manrope"; color: #bdb8e0; }
+.acento { color: var(--lila-claro); }
+/* Teléfono: borde metálico, cristal y reflejo en el suelo */
+.tel { width: 452px; height: 980px; border-radius: 70px; padding: 10px;
+  background: linear-gradient(135deg, #5d5a7a 0%, #26243a 18%, #121120 50%, #26243a 82%, #4f4c6b 100%);
+  box-shadow: 0 90px 140px -60px rgba(0,0,0,.95), 0 40px 60px -40px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.18), 0 0 0 1px rgba(0,0,0,.6);
+  -webkit-box-reflect: below 26px linear-gradient(transparent 82%, rgba(255,255,255,.10)); }
+.tel::before, .tel::after { content: ""; position: absolute; right: -4px; width: 4px; border-radius: 0 3px 3px 0; background: linear-gradient(90deg, #3a3854, #5d5a7a); }
+.tel::before { top: 230px; height: 110px; } .tel::after { top: 360px; height: 70px; }
+.tel .pantalla { position: relative; width: 432px; height: 960px; border-radius: 61px; overflow: hidden; background: #0b0a14; }
+.app { position: absolute; left: 0; top: 0; width: 432px; height: 960px; overflow: hidden; border-radius: 61px; background: #fff; }
+.capa { position: absolute; left: 0; top: 0; width: 432px; height: 960px; overflow: hidden; }
+.capa img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.contenido { clip-path: inset(0 0 92px 0); }
+.barra { clip-path: inset(868px 0 0 0); }
+.largo { position: absolute; left: -7.2px; top: 0; width: 446.4px; }
+.largo img { width: 100%; display: block; }
+.vidrio { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(125deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,0) 32%); z-index: 4; pointer-events: none; }
+.toque { width: 66px; height: 66px; margin: -33px 0 0 -33px; border-radius: 50%; border: 3px solid rgba(255,255,255,.95); background: rgba(143,132,255,.25); box-shadow: 0 0 0 6px rgba(106,92,242,.22), 0 6px 18px rgba(0,0,0,.3); z-index: 5; }
+/* Computadora */
+.lap { width: 900px; -webkit-box-reflect: below 18px linear-gradient(transparent 86%, rgba(255,255,255,.08)); }
+.lap .marco { position: relative; width: 900px; height: 578px; border-radius: 28px; padding: 18px 18px 24px; background: linear-gradient(160deg, #3c3956, #15142a 40%, #0d0c18);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 70px 120px -50px rgba(0,0,0,.95); }
+.lap .marco .pantalla { position: relative; width: 864px; height: 536px; border-radius: 8px; overflow: hidden; background: #f3f1fb; }
+.lap .marco .pantalla img { width: 864px; display: block; }
+.lap .base { width: 1020px; margin-left: -60px; height: 28px; border-radius: 3px 3px 24px 24px; background: linear-gradient(180deg, #5a5778, #2a2842 55%, #17162b); box-shadow: 0 30px 60px -24px rgba(0,0,0,.9); }
+.lap .base::before { content: ""; display: block; width: 170px; height: 9px; margin: 0 auto; border-radius: 0 0 12px 12px; background: #17162b; }
+/* Cierre */
+.cta { display: inline-block; padding: 30px 60px; border-radius: 999px; background: linear-gradient(135deg, #7d6fff, #5a4bf0); font: 800 44px "Sora"; letter-spacing: .03em; box-shadow: 0 26px 60px -24px rgba(106,92,242,.9); }
+.usuario { display: inline-block; padding: 16px 38px; border-radius: 999px; border: 2px solid rgba(201,192,255,.5); background: rgba(11,10,20,.6); font: 800 44px "Manrope"; color: #fff; }
+.separador { color: var(--lila); padding: 0 14px; }
+</style></head><body data-bpm="92">
+
+<!-- FONDO -->
+<div class="suelo-luz"></div>
+<svg class="lineas" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+  <g fill="none" stroke="#8f84ff" stroke-width="1.2" opacity=".09" id="arcos">
+    <ellipse cx="540" cy="1150" rx="760" ry="230" transform="rotate(-14 540 1150)"/>
+    <ellipse cx="540" cy="1150" rx="980" ry="300" transform="rotate(-14 540 1150)"/>
+  </g>
+  <line x1="0" y1="1640" x2="1080" y2="1640" stroke="#c9c0ff" stroke-opacity=".07" stroke-width="1"/>
+</svg>
+
+<div class="mundo">
+  <div class="k3 foco" style="left:-210px;top:300px" data-kf='[[0,{"o":0.7,"s":0.85}],[3.8,{"o":1,"s":1}],[8,{"x":-40,"y":120}],[13,{"x":60,"y":-40}],[17,{"x":-20,"y":40}],[20,{"x":120,"y":120,"s":1.15}],[25.6,{"x":40,"y":60}],[27,{"x":0,"y":-260,"s":0.9}],[30,{"y":-280}]]'></div>
+
+  <!-- CÁMARA: todos los movimientos de acercamiento, paneo y órbita pasan por aquí -->
+  <div class="k3 camara" style="left:0;top:0;width:1080px;height:1920px" data-kf='[[0,{"o":1}],[5.4,{"s":1}],[7.0,{"s":1.1,"y":-40}],[8.9,{"s":1.12,"y":-60}],[9.4,{"s":1.3,"x":26,"y":-378,"e":"suave"}],[11.2,{"s":1.3,"x":26,"y":-378}],[11.75,{"s":1.12,"x":0,"y":-60,"e":"suave"}],[12.45,{"s":1,"x":0,"y":0,"e":"suave"}],[13.35,{"s":1}],[13.85,{"s":1.4,"x":126,"y":249,"e":"suave"}],[14.35,{"s":1.4,"x":126,"y":249}],[14.65,{"s":1.04,"x":0,"y":0,"e":"suave"}],[17.7,{"s":1}],[18.2,{"s":1.06,"x":30,"e":"in"}],[19.6,{"s":1,"x":0,"e":"out"}],[21.5,{"ry":-3}],[25.4,{"s":1.04,"ry":3}],[26.3,{"s":1,"ry":0}]]'>
+
+    <!-- COMPUTADORA -->
+    <div class="k3 lap" style="left:90px;top:800px" data-kf='[[18.0,{"o":0,"x":620,"z":-260,"ry":-24,"b":4}],[18.8,{"o":1,"x":180,"z":-60,"ry":-12,"b":1.5,"e":"lin"}],[19.6,{"x":70,"z":0,"ry":-7,"b":0,"e":"out"}],[21.5,{"x":50,"ry":-4}],[25.4,{"x":0,"ry":4,"z":-30}],[26.4,{"o":0,"x":0,"y":520,"z":-320,"b":2,"e":"in"}]]'>
+      <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-recorrido.webp" alt="" data-desliza='[[19.2,0],[25.6,-560]]'><div class="vidrio"></div></div></div><div class="base"></div></div>
+
+    <!-- TELÉFONO: el mismo de principio a fin -->
+    <div class="k3 tel" style="left:314px;top:650px" data-kf='[[3.25,{"o":0,"y":760,"rx":22,"z":-200,"b":3}],[3.5,{"o":1,"y":600,"rx":20,"z":-180,"b":2.5,"e":"lin"}],[5.1,{"o":1,"y":0,"rx":4,"ry":-6,"z":0,"b":0,"e":"out"}],[9.0,{"ry":2,"rx":1}],[12.6,{"ry":-3,"z":30}],[13.3,{"ry":4,"z":30,"e":"suave"}],[16.9,{"ry":-2,"z":20}],[17.6,{"ry":3,"z":20,"e":"suave"}],[18.0,{"x":0,"y":0,"s":1,"ry":0,"z":0}],[18.7,{"x":-150,"y":60,"s":0.72,"z":120,"ry":10,"b":1.2,"e":"in"}],[19.4,{"x":-250,"y":110,"s":0.52,"z":220,"ry":14,"rx":2,"b":0,"e":"out"}],[21.5,{"x":-262,"y":108,"s":0.52,"ry":10,"z":230}],[25.4,{"x":-226,"y":102,"s":0.52,"ry":3,"z":210}],[26.4,{"o":0,"x":-226,"y":640,"z":-160,"b":2,"e":"in"}]]'>
+      <div class="pantalla">
+        <!-- APP 1 · Catálogo Dulce Hogar (capturas reales; cada toque cambia solo lo que cambia en la app) -->
+        <div class="k3 app" data-kf='[[3.8,{"o":1}],[12.65,{"x":0,"s":1}],[13.0,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":-440,"s":0.9,"b":0,"e":"out"}],[13.36,{"o":0,"x":-440,"s":0.9}]]'>
+          <div class="largo"><img src="img/catalogo-dulce-hogar.webp" alt="" data-desliza='[[5.6,0],[6.6,0],[8.1,-960],[8.35,-960],[9.1,0]]'></div>
+          <div class="k3 capa" data-kf='[[9.08,{"o":0}],[9.1,{"o":1}]]'><img src="img/catalogo-estado-a.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[9.58,{"o":1}]]' data-clip='{"circulo":[168,674],"ks":[[9.58,0],[9.82,72]]}'><img src="img/catalogo-estado-b.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[9.65,{"o":1}]]' data-clip='{"arriba":[[9.65,100],[10.0,88.5]]}'><img src="img/catalogo-estado-b.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[10.02,{"o":1}]]'><img src="img/catalogo-estado-b.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[10.18,{"o":1}]]' data-clip='{"circulo":[158,674],"ks":[[10.18,0],[10.4,95]]}'><img src="img/catalogo-estado-c.webp" alt=""></div>
+          <div class="k3 capa" style="clip-path:inset(88.5% 0 0 0)" data-kf='[[10.2,{"o":0}],[10.4,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[10.42,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
+          <div class="k3 capa" style="background:rgba(0,0,0,.415)" data-kf='[[10.82,{"o":0}],[11.12,{"o":1}]]'></div>
+          <div class="k3 capa" style="clip-path:inset(43.6% 0 0 0)" data-kf='[[10.82,{"o":1,"y":541}],[11.22,{"y":0,"e":"out"}]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
+          <div class="k3 capa" data-kf='[[11.24,{"o":1}]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
+          <div class="k3 capa" style="clip-path:inset(0 0 92.2% 0)" data-kf='[[11.72,{"o":0}],[11.95,{"o":1}]]'><img src="img/catalogo-estado-e.webp" alt=""></div>
+          <div class="k3 capa" style="clip-path:inset(7.8% 0 0 0)" data-kf='[[11.72,{"o":1,"y":885}],[12.15,{"y":0,"e":"out"}]]'><img src="img/catalogo-estado-e.webp" alt=""></div>
+          <div class="k3 toque" style="left:168px;top:674px" data-kf='[[9.35,{"o":0,"s":1.6}],[9.55,{"o":1,"s":0.8,"e":"out"}],[9.7,{"s":1}],[10.0,{"o":0,"s":1.8}]]'></div>
+          <div class="k3 toque" style="left:169px;top:675px" data-kf='[[9.95,{"o":0,"s":1.6}],[10.15,{"o":1,"s":0.8,"e":"out"}],[10.3,{"s":1}],[10.6,{"o":0,"s":1.8}]]'></div>
+          <div class="k3 toque" style="left:214px;top:905px" data-kf='[[10.57,{"o":0,"s":1.6}],[10.77,{"o":1,"s":0.8,"e":"out"}],[10.92,{"s":1}],[11.22,{"o":0,"s":1.8}]]'></div>
+          <div class="k3 toque" style="left:214px;top:907px" data-kf='[[11.47,{"o":0,"s":1.6}],[11.67,{"o":1,"s":0.8,"e":"out"}],[11.82,{"s":1}],[12.12,{"o":0,"s":1.8}]]'></div>
+        </div>
+        <!-- APP 2 · Orbe Negocios: acercamiento al panel de ventas y navegación con la barra fija -->
+        <div class="k3 app" data-kf='[[12.65,{"o":1,"x":440,"s":0.9}],[13.0,{"x":220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":0,"s":1,"b":0,"e":"out"}],[16.95,{"x":0,"s":1}],[17.3,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[17.6,{"x":-440,"s":0.9,"b":0,"e":"out"}],[17.61,{"o":0,"x":-440,"s":0.9}]]'>
+          <div class="k3 capa contenido" data-kf='[[12.6,{"o":1,"x":0}],[14.8,{"x":0}],[15.2,{"x":-140,"b":0.8,"e":"suave"}],[15.21,{"o":0,"b":0}]]'><img src="img/negocios-hoy.webp" alt=""></div>
+          <div class="k3 capa contenido" data-kf='[[14.8,{"o":1,"x":432}],[15.0,{"x":200,"b":1.2,"e":"in"}],[15.2,{"x":0,"b":0,"e":"out"}],[15.5,{"x":0}],[15.9,{"x":140,"b":0.8,"e":"suave"}],[15.91,{"o":0,"b":0}]]'><img src="img/negocios-inventario.webp" alt=""></div>
+          <div class="k3 capa contenido" data-kf='[[15.5,{"o":1,"x":-432}],[15.7,{"x":-200,"b":1.2,"e":"in"}],[15.9,{"x":0,"b":0,"e":"out"}],[16.2,{"x":0}],[16.6,{"x":-140,"b":0.8,"e":"suave"}],[16.61,{"o":0,"b":0}]]'><img src="img/negocios-vender.webp" alt=""></div>
+          <div class="k3 capa contenido" data-kf='[[16.2,{"o":1,"x":432}],[16.4,{"x":200,"b":1.2,"e":"in"}],[16.6,{"x":0,"b":0,"e":"out"}]]'><img src="img/negocios-reportes.webp" alt=""></div>
+          <div class="k3 capa barra" data-kf='[[12.6,{"o":1}]]'><img src="img/negocios-hoy.webp" alt=""></div>
+          <div class="k3 capa barra" data-kf='[[14.8,{"o":0}],[15.0,{"o":1}]]'><img src="img/negocios-inventario.webp" alt=""></div>
+          <div class="k3 capa barra" data-kf='[[15.5,{"o":0}],[15.7,{"o":1}]]'><img src="img/negocios-vender.webp" alt=""></div>
+          <div class="k3 capa barra" data-kf='[[16.2,{"o":0}],[16.4,{"o":1}]]'><img src="img/negocios-reportes.webp" alt=""></div>
+          <div class="k3 toque" style="left:293px;top:903px" data-kf='[[14.5,{"o":0,"s":1.6}],[14.7,{"o":1,"s":0.8,"e":"out"}],[14.85,{"s":1}],[15.15,{"o":0,"s":1.8}]]'></div>
+          <div class="k3 toque" style="left:134px;top:903px" data-kf='[[15.2,{"o":0,"s":1.6}],[15.4,{"o":1,"s":0.8,"e":"out"}],[15.55,{"s":1}],[15.85,{"o":0,"s":1.8}]]'></div>
+          <div class="k3 toque" style="left:214px;top:898px" data-kf='[[15.9,{"o":0,"s":1.6}],[16.1,{"o":1,"s":0.8,"e":"out"}],[16.25,{"s":1}],[16.55,{"o":0,"s":1.8}]]'></div>
+        </div>
+        <!-- APP 3 · Página de reservas de muestra (Barbería El Filo) -->
+        <div class="k3 app" style="background:#14120f" data-kf='[[16.95,{"o":1,"x":440,"s":0.9}],[17.3,{"x":220,"s":0.95,"b":2.5,"e":"in"}],[17.6,{"x":0,"s":1,"b":0,"e":"out"}]]'>
+          <div class="k3 capa" data-kf='[[16.9,{"o":1}]]'><img src="img/barberia-el-filo-movil.webp" alt=""></div>
+        </div>
+        <div class="vidrio"></div>
+      </div></div>
+  </div>
+
+  <!-- LOGO (apertura y cierre): logotipo oficial, sin decoración espacial -->
+  <div class="k3" style="left:500px;top:250px;width:80px;height:80px" data-kf='[[0,{"o":1,"y":0}],[3.4,{"o":1}],[3.8,{"o":0,"y":-16}]]'>
+    <svg width="80" height="80" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="7" stroke-linecap="round"/>
+      <mask id="m0" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="15"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#m0)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="78.5" cy="76" r="12" fill="#0b0a14"/><circle cx="78.5" cy="76" r="8" fill="#3ddc9f"/></g></svg></div>
+  <div class="k3" style="left:425px;top:390px;width:230px;height:230px" data-kf='[[25.9,{"o":0,"s":0.86,"y":30}],[26.7,{"o":1,"s":1,"y":0,"e":"out"}]]'>
+    <svg width="230" height="230" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="25.9,26.9"/>
+      <mask id="m1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="14"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#m1)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="26.1,27.1"/>
+      <g data-orbita="0"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+</div>
+
+<div class="textos">
+  <!-- 0 – 3,85 s · «Tu negocio necesita más que una presencia digital.» -->
+  <div class="bloque centrado" style="top:780px">
+    <span class="linea h1"><span data-a="sube" data-in="-0.35" data-d="0.6" data-out="3.45" data-sal="sube">Tu negocio</span></span>
+    <span class="linea h1"><span data-a="sube" data-in="-0.1" data-d="0.6" data-out="3.5" data-sal="sube">necesita más</span></span>
+    <span class="linea h1"><span data-a="sube" data-in="0.2" data-d="0.6" data-out="3.55" data-sal="sube">que una <span class="acento">presencia</span></span></span>
+    <span class="linea h1"><span data-a="sube" data-in="0.45" data-d="0.6" data-out="3.6" data-sal="sube"><span class="acento">digital.</span></span></span>
+  </div>
+  <!-- 3,85 – 6,4 s · «Necesita herramientas que funcionen.» -->
+  <div class="bloque" style="top:250px">
+    <span class="linea h2"><span data-a="sube" data-in="3.7" data-d="0.55" data-out="6.3">Necesita <span class="acento">herramientas</span></span></span>
+    <span class="linea h2"><span data-a="sube" data-in="3.9" data-d="0.55" data-out="6.35">que funcionen.</span></span>
+  </div>
+  <!-- 6,5 – 12,6 s · Catálogos -->
+  <div class="bloque" style="top:230px">
+    <p class="ojo" data-a="sube" data-in="6.6" data-out="8.95"><i></i>Catálogos digitales</p>
+    <span class="linea h2" style="margin-top:22px"><span data-a="sube" data-in="6.8" data-d="0.55" data-out="8.95">Tus productos,</span></span>
+    <span class="linea h2"><span data-a="sube" data-in="7.0" data-d="0.55" data-out="9.0"><span class="acento">tus pedidos.</span></span></span>
+  </div>
+  <!-- 13,0 – 17,0 s · Aplicaciones -->
+  <div class="bloque" style="top:230px">
+    <p class="ojo" data-a="sube" data-in="13.1" data-out="16.85"><i></i>Orbe Negocios</p>
+    <span class="linea h2" style="margin-top:22px"><span data-a="sube" data-in="13.3" data-d="0.55" data-out="16.85">Aplicaciones</span></span>
+    <span class="linea h2"><span data-a="sube" data-in="13.5" data-d="0.55" data-out="16.9">para <span class="acento">gestionar.</span></span></span>
+  </div>
+  <!-- 17,15 – 21,4 s · Páginas web -->
+  <div class="bloque" style="top:230px">
+    <p class="ojo" data-a="sube" data-in="17.3" data-out="21.3"><i></i>Páginas web</p>
+    <span class="linea h2" style="margin-top:22px"><span data-a="sube" data-in="17.55" data-d="0.55" data-out="21.3">Tus servicios,</span></span>
+    <span class="linea h2"><span data-a="sube" data-in="17.75" data-d="0.55" data-out="21.35"><span class="acento">más cerca.</span></span></span>
+  </div>
+  <!-- 21,5 – 25,6 s · «Tecnología práctica, diseñada para trabajar contigo.» -->
+  <div class="bloque" style="top:230px">
+    <span class="linea h2"><span data-a="sube" data-in="21.6" data-d="0.55" data-out="25.5">Tecnología</span></span>
+    <span class="linea h2"><span data-a="sube" data-in="21.8" data-d="0.55" data-out="25.55"><span class="acento">práctica.</span></span></span>
+    <p class="pie" style="margin-top:22px" data-a="sube" data-in="22.6" data-out="25.55">Diseñada para trabajar contigo.</p>
+  </div>
+  <!-- 25,7 – 30 s · Cierre -->
+  <div class="bloque centrado" style="top:650px">
+    <span class="linea titulo" style="font:800 118px/1.0 Sora;letter-spacing:.01em"><span data-a="sube" data-in="26.15" data-d="0.7">ORBE APPS</span></span>
+  </div>
+  <p class="bloque centrado pie" style="top:800px;color:#efeefe;font-size:46px" data-a="sube" data-in="27.05">Software pensado para negocios.</p>
+  <p class="bloque centrado" style="top:880px;font:700 40px Manrope;color:#c9c0ff;letter-spacing:.02em" data-a="sube" data-in="27.45">Webs<span class="separador">·</span>Catálogos<span class="separador">·</span>Apps</p>
+  <p class="bloque centrado" style="top:1010px;padding:0 120px;font:700 54px/1.18 Sora;letter-spacing:-.03em;color:#fff" data-palabras="sube" data-in="27.85">¿Necesitas una solución digital para tu negocio?</p>
+  <div class="bloque centrado" style="top:1210px" data-a="escala" data-in="28.45"><span class="cta">ESCRÍBENOS POR DM</span></div>
+  <div class="bloque centrado" style="top:1400px" data-a="sube" data-in="28.7"><span class="usuario">@orbe.apps</span></div>
+</div>
+
+<script src="../../herramientas/motor2.js"></script>
+<script src="../../herramientas/motor3d.js"></script>
+<script>
+// Máscaras animadas: data-clip='{"arriba":[[seg,%],...]}' (aparece desde abajo) o '{"circulo":[x,y],"ks":[[seg,radio],...]}' (se abre desde el dedo).
+// Las líneas del fondo giran muy despacio con la cámara (parallax discreto).
+(function () {
+  const b = window.pintar, arcos = document.getElementById('arcos');
+  const suave = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+  const val = (ks, t) => { if (t <= ks[0][0]) return ks[0][1]; if (t >= ks[ks.length - 1][0]) return ks[ks.length - 1][1];
+    let i = 0; while (t >= ks[i + 1][0]) i++; return ks[i][1] + (ks[i + 1][1] - ks[i][1]) * suave((t - ks[i][0]) / (ks[i + 1][0] - ks[i][0])); };
+  const clips = [...document.querySelectorAll('[data-clip]')].map(el => ({ el, c: JSON.parse(el.dataset.clip) }));
+  window.pintar = t => {
+    b(t);
+    arcos.setAttribute('transform', `rotate(${t * 0.35} 540 1150) translate(0 ${-t * 2})`);
+    for (const { el, c: k } of clips) {
+      if (k.arriba) el.style.clipPath = `inset(${val(k.arriba, t)}% 0 0 0)`;
+      else el.style.clipPath = `circle(${val(k.ks, t)}px at ${k.circulo[0]}px ${k.circulo[1]}px)`;
+    }
+  };
+  window.pintar(0);
+})();
+</script>
+</body></html>
