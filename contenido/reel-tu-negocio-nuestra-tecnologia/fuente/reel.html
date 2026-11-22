@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Reel «Tu negocio. Nuestra tecnología.» — Orbe Apps (23 s, 1080x1920, 30 fps).
+     Proyecto editable: cada escena es un bloque comentado; los tiempos están en segundos.
+     Animación: herramientas/motor2.js (textos) + herramientas/motor3d.js (dispositivos en 3D, scroll y trazos).
+     Grabar: node herramientas/grabar-reel.js reel-tu-negocio-nuestra-tecnologia/fuente/reel.html video.mp4 23 20.6 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+:root { --noche: #0b0a14; --morado: #6a5cf2; --lila: #8f84ff; --lila-claro: #c9c0ff; --verde: #3ddc9f; --claro: #f4f3fb; --gris: #9a97b8; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smoothing: antialiased;
+  background: radial-gradient(1100px 900px at 80% 12%, #241f55 0%, transparent 60%), radial-gradient(900px 800px at 5% 92%, #18163a 0%, transparent 62%), var(--noche); }
+.cielo { position: absolute; inset: -80px; }
+.estrella { position: absolute; border-radius: 50%; background: #e6e3ff; }
+.mundo { position: absolute; inset: 0; perspective: 2000px; perspective-origin: 50% 52%; transform-style: preserve-3d; }
+.k3 { position: absolute; opacity: 0; transform-style: preserve-3d; will-change: transform, opacity; }
+.textos { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+[data-a] { opacity: 0; will-change: transform, opacity; }
+.centro { position: absolute; left: 90px; right: 150px; text-align: center; }
+.izqda { position: absolute; left: 90px; right: 150px; }
+.etiqueta { font: 700 30px "Manrope"; letter-spacing: .16em; text-transform: uppercase; color: var(--lila-claro); display: flex; align-items: center; gap: 16px; }
+.etiqueta i { width: 12px; height: 12px; border-radius: 50%; background: var(--verde); }
+.titulo { font: 800 88px/1.02 "Sora"; letter-spacing: -.045em; }
+.sub { font: 600 42px/1.32 "Manrope"; color: #c3bfe3; }
+/* Brillo violeta detrás de los dispositivos */
+.halo { width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(106,92,242,.42) 0%, rgba(106,92,242,.12) 40%, transparent 70%); }
+/* Teléfono */
+.tel { width: 460px; height: 996px; border-radius: 68px; padding: 14px; background: linear-gradient(145deg, #3a3758, #121022 40%, #0a0914 60%, #2c2a46);
+  box-shadow: 0 70px 120px -50px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08), inset 0 0 0 2px rgba(255,255,255,.06); }
+.tel .pantalla { position: relative; width: 100%; height: 100%; border-radius: 55px; overflow: hidden; background: #fff; }
+.tel .pantalla img { width: 100%; display: block; }
+.tel .isla { position: absolute; top: 14px; left: 50%; width: 120px; height: 34px; margin-left: -60px; border-radius: 20px; background: #05040a; z-index: 2; }
+.brillo { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.16) 50%, transparent 60%); background-size: 320% 100%; mix-blend-mode: screen; z-index: 3; pointer-events: none; }
+/* Computadora */
+.lap { width: 880px; }
+.lap .marco { position: relative; width: 880px; height: 568px; border-radius: 30px; padding: 22px 22px 26px; background: linear-gradient(160deg, #34314f, #121022 45%, #0b0a14);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 60px 110px -40px rgba(0,0,0,.9); }
+.lap .marco .pantalla { position: relative; width: 836px; height: 520px; border-radius: 10px; overflow: hidden; background: #fff; }
+.lap .marco img { width: 100%; display: block; transform: scale(1.13); transform-origin: 50% 0; }  /* recorta el borde de la sección siguiente */
+.lap .base { margin: 0 auto; width: 1000px; margin-left: -60px; height: 30px; border-radius: 4px 4px 26px 26px; background: linear-gradient(180deg, #4a4768, #24223a 60%, #15142a); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); }
+.lap .base::before { content: ""; display: block; width: 160px; height: 10px; margin: 0 auto; border-radius: 0 0 12px 12px; background: #15142a; }
+.chip { display: flex; align-items: center; gap: 16px; padding: 22px 30px; border-radius: 26px; background: rgba(24,22,48,.88); border: 1px solid rgba(201,192,255,.22); font: 700 34px "Manrope"; white-space: nowrap; box-shadow: 0 30px 60px -30px #000; backdrop-filter: blur(6px); }
+.chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--verde); }
+.cta { display: inline-block; padding: 30px 58px; border-radius: 999px; background: linear-gradient(135deg, #7d6fff, #5a4bf0); font: 800 46px "Sora"; letter-spacing: -.03em; box-shadow: 0 26px 60px -24px rgba(106,92,242,.95); }
+.separador { color: var(--lila); padding: 0 14px; }
+</style></head><body data-bpm="96">
+<div class="cielo"></div>
+
+<div class="mundo">
+  <div class="k3 halo" style="left:90px;top:640px" data-kf='[[0,{"o":0.0,"s":0.8}],[1.5,{"o":1,"s":1}],[8,{"x":60,"y":40}],[13,{"x":-40,"y":80}],[17,{"x":0,"y":0}],[23,{"y":-200,"s":1.1}]]'></div>
+
+  <!-- ESCENA 2 · Catálogos digitales (3 a 8 s): captura real del catálogo de muestra Dulce Hogar, con desplazamiento -->
+  <div class="k3 tel" style="left:310px;top:640px" data-kf='[[2.9,{"o":0,"z":-500,"ry":-24,"rx":6,"y":90}],[3.9,{"o":1,"z":0,"ry":-10,"rx":3,"y":0,"e":"out"}],[7.5,{"ry":-2,"rx":1,"z":70}],[8.1,{"o":0,"z":260,"ry":4,"e":"in"}]]'>
+    <div class="pantalla"><img src="img/catalogo-dulce-hogar.webp" alt="" data-desliza='[[4.3,0],[5.9,-560],[6.3,-560],[7.6,-1060]]'><div class="brillo"></div></div><div class="isla"></div></div>
+  <div class="k3 chip" style="left:90px;top:1380px" data-kf='[[5.2,{"o":0,"x":-40,"z":120}],[5.8,{"o":1,"x":0,"z":160,"e":"out"}],[7.6,{"z":170}],[8.0,{"o":0,"z":260}]]'><i></i>Pedido completo por WhatsApp</div>
+
+  <!-- ESCENA 3 · Aplicaciones (8 a 13 s): capturas reales de Orbe Negocios -->
+  <div class="k3 tel" style="left:40px;top:700px" data-kf='[[8.1,{"o":0,"x":140,"z":-520,"ry":26}],[9.1,{"o":0.92,"x":0,"z":-330,"ry":20,"e":"out"}],[12.5,{"x":-24,"ry":24,"z":-320}],[13.1,{"o":0,"z":-500}]]'>
+    <div class="pantalla"><img src="img/negocios-vender.webp" alt=""><div class="brillo"></div></div><div class="isla"></div></div>
+  <div class="k3 tel" style="left:580px;top:700px" data-kf='[[8.3,{"o":0,"x":-140,"z":-520,"ry":-26}],[9.3,{"o":0.92,"x":0,"z":-330,"ry":-20,"e":"out"}],[12.5,{"x":24,"ry":-24,"z":-320}],[13.1,{"o":0,"z":-500}]]'>
+    <div class="pantalla"><img src="img/negocios-reportes.webp" alt=""><div class="brillo"></div></div><div class="isla"></div></div>
+  <div class="k3 tel" style="left:310px;top:640px" data-kf='[[7.9,{"o":0,"z":-300,"y":120}],[8.9,{"o":1,"z":0,"y":0,"rx":4,"e":"out"}],[12.5,{"z":80,"rx":0,"ry":4}],[13.1,{"o":0,"z":280,"e":"in"}]]'>
+    <div class="pantalla"><img src="img/negocios-hoy.webp" alt=""><div class="brillo"></div></div><div class="isla"></div></div>
+
+  <!-- ESCENA 4 · Desarrollo web (13 a 17 s): página de reservas de muestra en el teléfono y la web de Orbe Apps en la computadora -->
+  <div class="k3 lap" style="left:100px;top:880px" data-kf='[[14.4,{"o":0,"z":-700,"rx":14,"y":80}],[15.4,{"o":1,"z":0,"rx":5,"y":0,"e":"out"}],[16.6,{"rx":3,"z":40}],[17.1,{"o":0,"z":220,"e":"in"}]]'>
+    <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-pc.webp" alt=""><div class="brillo"></div></div></div><div class="base"></div></div>
+  <div class="k3 tel" style="left:310px;top:640px" data-kf='[[13.0,{"o":0,"z":-420,"ry":12}],[13.9,{"o":1,"z":0,"ry":4,"e":"out"}],[14.5,{"z":20,"ry":2}],[15.5,{"x":-300,"y":330,"z":240,"s":0.56,"ry":14,"rx":2}],[16.6,{"x":-306,"y":334,"z":250,"s":0.56,"ry":10}],[17.1,{"o":0,"z":360,"e":"in"}]]'>
+    <div class="pantalla"><img src="img/barberia-el-filo-movil.webp" alt=""><div class="brillo"></div></div><div class="isla"></div></div>
+</div>
+
+<div class="textos">
+  <!-- ESCENA 1 · Introducción (0 a 3 s): logotipo original y frase -->
+  <div class="centro" style="top:520px" data-a="escala" data-in="0.15" data-d="1.0" data-out="2.75" data-sal="fade">
+    <svg width="300" height="300" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="0.2,1.2"/>
+      <mask id="franja1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="14"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#franja1)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="0.5,1.5"/>
+      <g data-orbita="1.2"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+  <p class="centro titulo" style="top:950px;font-size:74px" data-palabras="sube" data-in="0.9" data-out="2.8">Las ideas de tu negocio merecen mejores herramientas.</p>
+
+  <!-- ESCENA 2 · Catálogos digitales -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="3.2" data-out="7.85"><i></i>Catálogos</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="3.3" data-out="7.85">Catálogos digitales.</p>
+  <p class="izqda sub" style="top:510px" data-a="sube" data-in="3.8" data-out="7.85">Productos, precios y pedidos en un solo lugar.</p>
+
+  <!-- ESCENA 3 · Aplicaciones -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="8.2" data-out="12.85"><i></i>Orbe Negocios</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="8.3" data-out="12.85">Aplicaciones para trabajar mejor.</p>
+  <p class="izqda sub" style="top:510px" data-a="sube" data-in="8.9" data-out="12.85">Soluciones diseñadas para tu negocio.</p>
+
+  <!-- ESCENA 4 · Desarrollo web -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="13.2" data-out="16.85"><i></i>Páginas web</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="13.3" data-out="16.85">Tu presencia digital también importa.</p>
+
+  <!-- ESCENA 5 · Cierre comercial (17 a 23 s) -->
+  <div class="centro" style="top:430px" data-a="escala" data-in="17.3" data-d="1.0">
+    <svg width="250" height="250" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="17.4,18.3"/>
+      <mask id="franja2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="14"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#franja2)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="17.6,18.5"/>
+      <g data-orbita="0"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+  <h1 class="centro titulo" style="top:720px;font-size:120px" data-letras="sube" data-in="17.8">Orbe Apps</h1>
+  <p class="centro sub" style="top:870px;font-size:46px;color:#efeefe" data-a="sube" data-in="18.6">Software pensado para negocios.</p>
+  <p class="centro" style="top:960px;font:700 38px Manrope;color:#c9c0ff;letter-spacing:.02em" data-a="sube" data-in="19.0">Webs<span class="separador">·</span>Catálogos<span class="separador">·</span>Apps</p>
+  <div class="centro" style="top:1100px" data-a="escala" data-in="19.5"><span class="cta">Conoce nuestras soluciones.</span></div>
+  <p class="centro sub" style="top:1270px;color:#c9c0ff" data-a="sube" data-in="19.9">@orbe.apps</p>
+</div>
+
+<script>
+// Cielo con estrellas, fijo y discreto (mismas posiciones en cada grabación)
+(function () { let s = 11; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; const c = document.querySelector('.cielo');
+  for (let i = 0; i < 140; i++) { const d = document.createElement('i'), z = [2, 2, 2, 3, 3, 4][Math.floor(r() * 6)]; d.className = 'estrella'; d.style.cssText = `left:${r() * 1240}px;top:${r() * 2080}px;width:${z}px;height:${z}px;opacity:${0.25 + r() * 0.5}`; c.appendChild(d); } })();
+</script>
+<script src="../../herramientas/motor2.js"></script>
+<script src="../../herramientas/motor3d.js"></script>
+<script>
+// Deriva lenta del cielo (cámara que avanza)
+(function () { const c = document.querySelector('.cielo'), b = window.pintar; window.pintar = t => { b(t); c.style.transform = `translateY(${-t * 3}px) scale(${1 + t * 0.002})`; }; window.pintar(0); })();
+</script>
+</body></html>
