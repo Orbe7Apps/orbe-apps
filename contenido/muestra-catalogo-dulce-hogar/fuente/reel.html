@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Reel: muestra del catálogo Dulce Hogar (21 s). Grabar con:
+     node herramientas/grabar-reel.js muestra-catalogo-dulce-hogar/fuente/reel.html muestra-catalogo-dulce-hogar/reel.mp4 21 5.2 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { font-family: "Manrope", sans-serif; color: #efeefe; -webkit-font-smoothing: antialiased;
+  background: radial-gradient(1000px 800px at 85% 15%, #2a2462 0%, transparent 62%), radial-gradient(900px 700px at 0% 95%, #1d1a40 0%, transparent 60%), #0b0a14; }
+.estrellas { position: absolute; inset: -320px; transform-origin: 50% 50%; }
+.estrella { position: absolute; border-radius: 50%; background: #e6e3ff; }
+[data-a] { opacity: 0; will-change: transform, opacity; }
+h1, h2 { font-family: "Sora", sans-serif; font-weight: 800; letter-spacing: -.045em; line-height: 1.02; }
+.centro { position: absolute; left: 90px; right: 150px; text-align: center; }
+.izqda { position: absolute; left: 90px; right: 150px; }
+h1 { font-size: 112px; }
+h2 { font-size: 94px; }
+.lead { font-size: 46px; line-height: 1.32; color: #c9c5ea; font-weight: 600; }
+.paso { font: 800 54px/1.12 "Sora"; letter-spacing: -.03em; color: #c9c0ff; }
+.gira { background: linear-gradient(90deg, #c9c0ff, #3ddc9f 55%, #f0a020); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tel { position: absolute; width: 460px; height: 996px; border-radius: 64px; background: #000; padding: 14px; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9), 0 0 0 2px #2a2745; }
+.tel img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 52px; display: block; }
+.chip { position: absolute; display: flex; align-items: center; gap: 16px; padding: 20px 28px; border-radius: 26px; background: rgba(31,28,58,.9); border: 2px solid rgba(255,255,255,.12); font-size: 36px; font-weight: 800; white-space: nowrap; box-shadow: 0 30px 60px -30px #000; }
+.chip i { width: 18px; height: 18px; border-radius: 50%; background: #3ddc9f; box-shadow: 0 0 18px #3ddc9f; }
+.burbuja { position: absolute; padding: 26px 36px; border-radius: 34px 34px 34px 8px; background: #f4f3fb; color: #1a1733; font: 700 46px "Manrope"; white-space: nowrap; box-shadow: 0 30px 60px -30px #000; }
+.burbuja small { display: block; font-size: 24px; color: #8a87a8; text-align: right; margin-top: 4px; }
+.boton { display: inline-block; background: linear-gradient(135deg, #7d6fff, #5a4bf0); color: #fff; font: 800 52px "Sora"; letter-spacing: -.03em; padding: 34px 64px; border-radius: 999px; box-shadow: 0 30px 60px -20px rgba(106,92,242,.9); }
+.precio { font: 800 64px "Sora"; letter-spacing: -.04em; color: #3ddc9f; }
+.cortina { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; z-index: 50; background: linear-gradient(90deg, #5a4bf0, #7d6fff 45%, #3ddc9f); opacity: 0; }
+</style></head><body data-bpm="104">
+<div class="estrellas"></div>
+
+<!-- 1 · Gancho (0 a 3,2 s) -->
+<h1 class="izqda" style="top:300px" data-palabras="sube" data-in="0.3" data-out="3.0">¿Te escriben <span style="color:#3ddc9f">«precio?»</span> todo el día?</h1>
+<div class="burbuja" style="left:90px;top:820px" data-a="izq" data-in="0.9" data-out="3.0" data-flota="0">¿precio? 🙏<small>9:41</small></div>
+<div class="burbuja" style="left:420px;top:1010px" data-a="der" data-in="1.2" data-out="3.0" data-flota="1.5">¿qué sabores hay?<small>9:42</small></div>
+<div class="burbuja" style="left:150px;top:1200px" data-a="izq" data-in="1.5" data-out="3.0" data-flota="3">¿hacen envíos?<small>9:42</small></div>
+<div class="burbuja" style="left:520px;top:1390px" data-a="der" data-in="1.8" data-out="3.0" data-flota="4.5">precio??<small>9:43</small></div>
+
+<!-- Título fijo (3,2 a 17 s) -->
+<p class="izqda lead" style="top:230px" data-a="sube" data-in="3.3" data-out="16.9">Catálogo de muestra</p>
+<h2 class="izqda" style="top:290px" data-a="sube" data-in="3.45" data-out="16.9">Dulce Hogar</h2>
+
+<!-- 2 · Ve todo (3,2 a 7 s) -->
+<p class="izqda paso" style="top:430px" data-a="sube" data-in="3.6" data-out="6.8">Tu cliente ve todo con foto y precio</p>
+<div class="tel" style="left:330px;top:640px" data-a="sube" data-in="3.6" data-out="6.8" data-d="0.7" data-rot="-3"><img src="img/1-catalogo.webp" alt=""></div>
+<div class="chip" style="left:90px;top:1330px" data-a="izq" data-in="4.4" data-out="6.8"><i></i>Ejemplo: repostería</div>
+
+<!-- 3 · Elige (7 a 10,4 s) -->
+<p class="izqda paso" style="top:430px" data-a="sube" data-in="7.1" data-out="10.2">Elige lo que quiere</p>
+<div class="tel" style="left:330px;top:640px" data-a="sube" data-in="7.1" data-out="10.2" data-d="0.7" data-rot="3"><img src="img/3-lista.webp" alt=""></div>
+<div class="chip" style="left:90px;top:1330px" data-a="izq" data-in="7.9" data-out="10.2"><i></i>3 productos en su pedido</div>
+
+<!-- 4 · Total (10,4 a 13,8 s) -->
+<p class="izqda paso" style="top:430px" data-a="sube" data-in="10.5" data-out="13.6">Ve el total al instante</p>
+<div class="tel" style="left:330px;top:640px" data-a="sube" data-in="10.5" data-out="13.6" data-d="0.7" data-rot="-3"><img src="img/4-pedido.webp" alt=""></div>
+<div class="chip" style="left:90px;top:1330px" data-a="izq" data-in="11.2" data-out="13.6"><i></i>Total: <span data-cuenta="74" data-pre="$" data-dur="0.9"></span></div>
+
+<!-- 5 · Llega el pedido (13,8 a 17,2 s) -->
+<p class="izqda paso" style="top:430px" data-a="sube" data-in="13.9" data-out="17.0">Y te llega el pedido completo</p>
+<div class="tel" style="left:330px;top:640px" data-a="sube" data-in="13.9" data-out="17.0" data-d="0.7" data-rot="3"><img src="img/6-mensaje.webp" alt=""></div>
+<div class="chip" style="left:90px;top:545px" data-a="izq" data-in="14.6" data-out="17.0"><i></i>Solo confirmas ✓</div>
+
+<!-- 6 · Cierre (17,2 a 21 s) -->
+<div class="centro" style="top:330px" data-a="escala" data-in="17.3" data-d="0.9"><svg width="260" height="260" viewBox="0 0 120 120"><g transform="rotate(-22 60 60)"><path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#c9c0ff" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="60" r="30" fill="#8f84ff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#0b0a14" stroke-width="14"/><path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#c9c0ff" stroke-width="6" stroke-linecap="round"/><g data-orbita="0"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+<h2 class="centro" style="top:650px" data-palabras="sube" data-in="17.6">Tu catálogo, listo en 5 días</h2>
+<p class="centro precio" style="top:900px" data-a="escala" data-in="18.3"><span data-cuenta="49" data-pre="$" data-dur="0.7"></span> · pago único</p>
+<p class="centro lead" style="top:1010px" data-a="sube" data-in="18.6">Sin comisiones. Muestra gratis.</p>
+<div class="centro" style="top:1150px" data-a="sube" data-in="18.9" data-latido><span class="boton">Escríbenos por DM</span></div>
+<p class="centro lead" style="top:1340px" data-a="sube" data-in="19.2">@orbe.apps</p>
+
+<div class="cortina" data-cortes="3.2,7.0,10.4,13.8,17.2"></div>
+
+<script>
+// Cielo con estrellas (posiciones fijas para que el video sea siempre igual)
+(function () { let s = 11; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; const c = document.querySelector('.estrellas');
+  for (let i = 0; i < 200; i++) { const d = document.createElement('i'), z = [2, 2, 3, 3, 4, 5][Math.floor(r() * 6)]; d.className = 'estrella'; d.style.cssText = `left:${r() * 1720}px;top:${r() * 2560}px;width:${z}px;height:${z}px;opacity:${0.4 + r() * 0.6}`; c.appendChild(d); } })();
+</script>
+<script src="../../herramientas/motor2.js"></script>
+</body></html>
