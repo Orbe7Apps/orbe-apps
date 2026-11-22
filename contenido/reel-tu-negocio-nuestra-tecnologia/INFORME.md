@@ -1,6 +1,37 @@
 # Informe de producción · «Tu negocio. Nuestra tecnología.»
 
-## Versión 3 (actual) · transiciones con continuidad, interacciones y voz en off
+## Versión 4 (actual) · ajuste final
+Mismo proyecto que la versión 3 (copia en `fuente/reel-v3.html`), con la misma identidad y composición. Solo se corrigió la continuidad y la voz.
+
+### Resolución
+El archivo exportado es **1080x1920**, 9:16 y píxel cuadrado. Se comprobó con ffprobe y la versión 3 también lo era. Lo de 512x910 corresponde a la vista previa que genera la app al recibir el archivo. Esta versión se entrega como adjunto, sin vista previa, y con más calidad de imagen (CRF 16, perfil High 4.2, unos 2,8 Mbps).
+
+### Continuidad (qué se cambió)
+- **Catálogo:** ya no hay cambios de captura a pantalla completa. Cada toque cambia solo lo que cambia en la app real:
+  - el «+» se convierte en contador con un círculo que se abre desde el dedo y la barra «Ver mi pedido» sube desde abajo;
+  - el segundo toque actualiza solo el contador y la barra;
+  - «Ver mi pedido» oscurece el fondo (con el mismo valor que la app, 41,5 % de negro, medido en la captura) y la hoja sube deslizándose;
+  - **paso siguiente nuevo:** «Continuar» hace subir la hoja «Tus datos» con el botón «Enviar pedido por WhatsApp», una captura real del mismo pedido.
+- **Orbe Negocios:** la barra inferior de la app queda fija y solo cambia la pestaña marcada. El contenido se desliza horizontalmente según la posición de cada pestaña (Hoy → Inventario entra por la derecha, Inventario → Vender por la izquierda, Vender → Reportes por la derecha), con un leve desplazamiento de la pantalla anterior, como en la app.
+- **Cambios de app y entrada del teléfono:** desenfoque de movimiento discreto, solo durante la parte rápida del movimiento.
+- **Paso a la computadora:** una «cámara» envuelve los dos dispositivos: hace un zoom de salida y un paneo mientras el teléfono se aparta y la computadora entra con desenfoque de movimiento leve. Luego la web se desplaza suavemente.
+- Herramienta: `herramientas/motor3d.js` admite ahora el desenfoque de movimiento (`b`), y el reel tiene máscaras de círculo y de deslizamiento (`data-clip`).
+
+### Voz en off
+- **ElevenLabs** (voz «Eric», modelo multilingüe v2, español), con la clave de la cuenta de Guillermo, guardada de forma segura en el entorno. Reemplaza a la voz gratuita Piper, que se conserva en `fuente/voz-piper/`.
+- Cada frase cabe en su escena con los mismos tiempos de inicio, así que el video no se movió.
+- Transcripción automática del audio final: la narración completa se entiende, incluida «Orbe Apps».
+- **Licencia:** la cuenta no permitió el formato de audio de mayor calidad, reservado al plan Creator, así que es un plan Free o Starter. **El plan Free de ElevenLabs no permite uso comercial.** Si la cuenta es Free, para publicar este anuncio hace falta subir al menos al plan Starter. Hay que confirmarlo en la cuenta.
+
+### Mezcla y comprobación final
+- Voz al frente (ecualización y compresión suaves). Música de fondo que baja automáticamente con la voz (compresor de cadena lateral, relación 10:1). Efectos de interfaz. Salida suave al final. −14,4 LUFS, pico −1,5 dBFS, sin saturación.
+- `reel.mp4`: 1080x1920, 9:16, 30 fps, H.264 High, AAC 192 kbps, 30,0 s. `reel-portada.png`: 1080x1920.
+- Revisión del archivo exportado: hoja completa a 2 cuadros por segundo, más tiras del catálogo a 6 cuadros por segundo y de Orbe Negocios a 4 cuadros por segundo. No hay saltos accidentales y los subtítulos coinciden con la voz (`subtitulos.srt` regenerado con la duración real de cada frase).
+- Silencios: entre frases quedan pausas de 0,2 a 0,9 s que coinciden con las transiciones. Antes del cierre hay 1,5 s con el sonido de paso al logo.
+
+---
+
+## Versión 3
 Misma identidad aprobada. Fuentes anteriores conservadas: `fuente/reel-v1.html` y `fuente/reel-v2.html`.
 
 ### Qué cambió

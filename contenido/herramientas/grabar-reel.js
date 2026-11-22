@@ -23,7 +23,7 @@ const fs = require('fs'), path = require('path'), os = require('os');
   }
   await b.close();
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', String(fps), '-i', path.join(tmp, '%05d.jpg'),
-    '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-preset', 'slow', '-crf', '20', '-movflags', '+faststart', salida]);
+    '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-preset', 'slow', '-crf', '16', '-profile:v', 'high', '-level', '4.2', '-movflags', '+faststart', salida]);
   fs.rmSync(tmp, { recursive: true, force: true });
   console.log('Listo:', salida, `(${segs} s, ${n} cuadros)`);
 })();

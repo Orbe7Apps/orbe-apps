@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
-<!-- Reel «Tu negocio. Nuestra tecnología.» — Orbe Apps · VERSIÓN 3 (30 s, 1080x1920, 30 fps, con voz en off).
+<!-- Reel «Tu negocio. Nuestra tecnología.» — Orbe Apps · VERSIÓN 4 (30 s, 1080x1920, 30 fps, con voz en off). Base: fuente/reel-v3.html.
      Misma identidad que las versiones 1 y 2 (fuente/reel-v1.html, fuente/reel-v2.html).
      Novedades: un solo teléfono continuo de principio a fin; cambios de pantalla dentro del teléfono (desplazamiento,
      toques, hojas que suben, cambio de app); revelado lateral de la computadora; subtítulos sincronizados con la voz.
@@ -37,6 +37,8 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
 .tel .isla { position: absolute; top: 14px; left: 50%; width: 120px; height: 34px; margin-left: -60px; border-radius: 20px; background: #05040a; z-index: 6; }
 .app { position: absolute; left: 0; top: 0; width: 432px; height: 968px; overflow: hidden; border-radius: 55px; background: #fff; }
 .capa { position: absolute; left: 0; top: 0; width: 432px; height: 968px; overflow: hidden; }
+.contenido { clip-path: inset(0 0 93px 0); }
+.barra { clip-path: inset(875px 0 0 0); }
 .capa img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .largo { position: absolute; left: -7.65px; top: 0; width: 447.3px; }   /* catálogo completo a la misma escala que sus estados */
 .largo img { width: 100%; display: block; }
@@ -71,42 +73,63 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
       <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="-0.3,1.05"/>
       <g data-orbita="1.2"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
 
+  <!-- CÁMARA: envuelve teléfono y computadora; hace el zoom de salida y el paneo del paso a la web -->
+  <div class="k3 camara" style="left:0;top:0;width:1080px;height:1920px" data-kf='[[0,{"o":1}],[17.7,{"s":1,"x":0}],[18.2,{"s":1.06,"x":30,"e":"in"}],[19.6,{"s":1,"x":0,"e":"out"}],[30,{"s":1}]]'>
   <div class="k3 suelo" style="left:280px;top:1610px" data-kf='[[4.6,{"o":0}],[5.6,{"o":1}],[17.8,{"o":1}],[18.6,{"o":0}]]'></div>
 
-  <!-- COMPUTADORA (aparece con un movimiento lateral de cámara a los 18 s) -->
-  <div class="k3 lap" style="left:100px;top:800px" data-kf='[[18.0,{"o":0,"x":560,"z":-260,"ry":-24}],[19.4,{"o":1,"x":70,"z":0,"ry":-7,"e":"out"}],[21.5,{"x":50,"ry":-4}],[25.4,{"x":0,"ry":4,"z":-30}],[26.3,{"o":0,"x":0,"y":520,"z":-320,"e":"in"}]]'>
-    <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-recorrido.webp" alt="" data-desliza='[[19.0,0],[25.6,-560]]'><div class="brillo"></div></div></div><div class="base"></div></div>
+  <!-- COMPUTADORA: entra con el paneo lateral de la cámara (con desenfoque de movimiento leve) -->
+  <div class="k3 lap" style="left:100px;top:800px" data-kf='[[18.0,{"o":0,"x":620,"z":-260,"ry":-24,"b":4}],[18.8,{"o":1,"x":180,"z":-60,"ry":-12,"b":1.5,"e":"lin"}],[19.6,{"x":70,"z":0,"ry":-7,"b":0,"e":"out"}],[21.5,{"x":50,"ry":-4}],[25.4,{"x":0,"ry":4,"z":-30}],[26.3,{"o":0,"x":0,"y":520,"z":-320,"b":2,"e":"in"}]]'>
+    <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-recorrido.webp" alt="" data-desliza='[[19.2,0],[25.6,-560]]'><div class="brillo"></div></div></div><div class="base"></div></div>
 
   <!-- TELÉFONO: el mismo de principio a fin; sus pantallas cambian dentro -->
-  <div class="k3 tel" style="left:310px;top:640px" data-kf='[[3.9,{"o":0,"z":-900,"y":240,"rx":18}],[5.4,{"o":1,"z":0,"y":0,"rx":3,"ry":-6,"e":"out"}],[9.0,{"ry":2,"rx":1}],[12.6,{"ry":-3,"z":30}],[13.3,{"ry":4,"z":30,"e":"suave"}],[16.9,{"ry":-2,"z":20}],[17.6,{"ry":3,"z":20,"e":"suave"}],[18.0,{"x":0,"y":0,"s":1,"ry":0,"z":0}],[19.3,{"x":-250,"y":110,"s":0.52,"z":220,"ry":14,"rx":2,"e":"suave"}],[21.5,{"x":-262,"y":108,"s":0.52,"ry":10,"z":230}],[25.4,{"x":-226,"y":102,"s":0.52,"ry":3,"z":210}],[26.3,{"o":0,"x":-226,"y":620,"z":-160,"e":"in"}]]'>
+  <div class="k3 tel" style="left:310px;top:640px" data-kf='[[3.9,{"o":0,"z":-900,"y":240,"rx":18,"b":4}],[5.4,{"o":1,"z":0,"y":0,"rx":3,"ry":-6,"b":0,"e":"out"}],[9.0,{"ry":2,"rx":1}],[12.6,{"ry":-3,"z":30}],[13.3,{"ry":4,"z":30,"e":"suave"}],[16.9,{"ry":-2,"z":20}],[17.6,{"ry":3,"z":20,"e":"suave"}],[18.0,{"x":0,"y":0,"s":1,"ry":0,"z":0}],[18.7,{"x":-150,"y":60,"s":0.72,"z":120,"ry":10,"b":1.2,"e":"in"}],[19.4,{"x":-250,"y":110,"s":0.52,"z":220,"ry":14,"rx":2,"b":0,"e":"out"}],[21.5,{"x":-262,"y":108,"s":0.52,"ry":10,"z":230}],[25.4,{"x":-226,"y":102,"s":0.52,"ry":3,"z":210}],[26.3,{"o":0,"x":-226,"y":620,"z":-160,"b":2,"e":"in"}]]'>
     <div class="pantalla">
-      <!-- App 1 · Catálogo Dulce Hogar (estados reales, misma escala y misma posición) -->
-      <div class="k3 app" data-kf='[[3.8,{"o":1}],[12.65,{"x":0,"s":1}],[13.35,{"x":-440,"s":0.9,"e":"suave"}],[13.36,{"o":0,"x":-440,"s":0.9}]]'>
-        <div class="largo" data-kfh><img src="img/catalogo-dulce-hogar.webp" alt="" data-desliza='[[5.6,0],[7.0,0],[8.8,-980],[9.2,-980],[10.0,0]]'></div>
-        <div class="k3 capa" data-kf='[[9.98,{"o":0}],[10.0,{"o":1}]]'><img src="img/catalogo-estado-a.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[10.38,{"o":0}],[10.48,{"o":1}]]'><img src="img/catalogo-estado-b.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[10.98,{"o":0}],[11.08,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[11.55,{"o":1}]]' data-mascara='[[11.55,100],[12.0,0]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
-        <div class="k3 toque" style="left:171px;top:680px" data-kf='[[10.15,{"o":0,"s":1.6}],[10.35,{"o":1,"s":0.8,"e":"out"}],[10.5,{"s":1}],[10.8,{"o":0,"s":1.8}]]'></div>
-        <div class="k3 toque" style="left:172px;top:681px" data-kf='[[10.75,{"o":0,"s":1.6}],[10.95,{"o":1,"s":0.8,"e":"out"}],[11.1,{"s":1}],[11.4,{"o":0,"s":1.8}]]'></div>
-        <div class="k3 toque" style="left:216px;top:913px" data-kf='[[11.32,{"o":0,"s":1.6}],[11.52,{"o":1,"s":0.8,"e":"out"}],[11.67,{"s":1}],[11.97,{"o":0,"s":1.8}]]'></div>
+      <!-- APP 1 · Catálogo Dulce Hogar. Mismo teléfono, misma escala; cada toque cambia solo la zona tocada -->
+      <div class="k3 app" data-kf='[[3.8,{"o":1}],[12.65,{"x":0,"s":1}],[13.0,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":-440,"s":0.9,"b":0,"e":"out"}],[13.36,{"o":0,"x":-440,"s":0.9}]]'>
+        <!-- desplazamiento real por el catálogo (las tarjetas entran solas) y vuelta arriba -->
+        <div class="largo"><img src="img/catalogo-dulce-hogar.webp" alt="" data-desliza='[[5.6,0],[6.4,0],[8.0,-980],[8.3,-980],[9.1,0]]'></div>
+        <div class="k3 capa" data-kf='[[9.08,{"o":0}],[9.1,{"o":1}]]'><img src="img/catalogo-estado-a.webp" alt=""></div>
+        <!-- toque 1: el botón «+» se convierte en contador y sube la barra «Ver mi pedido» -->
+        <div class="k3 capa" data-kf='[[9.48,{"o":1}]]' data-clip='{"circulo":[171,680],"ks":[[9.48,0],[9.72,72]]}'><img src="img/catalogo-estado-b.webp" alt=""></div>
+        <div class="k3 capa" data-kf='[[9.55,{"o":1}]]' data-clip='{"arriba":[[9.55,100],[9.9,88.5]]}'><img src="img/catalogo-estado-b.webp" alt=""></div>
+        <div class="k3 capa" data-kf='[[9.92,{"o":1}]]'><img src="img/catalogo-estado-b.webp" alt=""></div>
+        <!-- toque 2: el contador pasa a 2 y la barra actualiza el total -->
+        <div class="k3 capa" data-kf='[[10.08,{"o":1}]]' data-clip='{"circulo":[160,680],"ks":[[10.08,0],[10.3,95]]}'><img src="img/catalogo-estado-c.webp" alt=""></div>
+        <div class="k3 capa" style="clip-path:inset(88.5% 0 0 0)" data-kf='[[10.1,{"o":0}],[10.3,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
+        <div class="k3 capa" data-kf='[[10.32,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
+        <!-- toque 3: «Ver mi pedido» → el fondo se oscurece y la hoja del pedido sube deslizándose -->
+        <div class="k3 capa" style="background:rgba(0,0,0,.415)" data-kf='[[10.75,{"o":0}],[11.05,{"o":1}]]'></div>
+        <div class="k3 capa" style="clip-path:inset(43.6% 0 0 0)" data-kf='[[10.75,{"o":1,"y":546}],[11.15,{"y":0,"e":"out"}]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
+        <div class="k3 capa" data-kf='[[11.17,{"o":1}]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
+        <!-- toque 4: «Continuar» → sube la hoja «Tus datos» con el botón «Enviar pedido por WhatsApp» -->
+        <div class="k3 capa" style="clip-path:inset(0 0 92.2% 0)" data-kf='[[11.72,{"o":0}],[11.95,{"o":1}]]'><img src="img/catalogo-estado-e.webp" alt=""></div>
+        <div class="k3 capa" style="clip-path:inset(7.8% 0 0 0)" data-kf='[[11.72,{"o":1,"y":892}],[12.15,{"y":0,"e":"out"}]]'><img src="img/catalogo-estado-e.webp" alt=""></div>
+        <div class="k3 toque" style="left:171px;top:680px" data-kf='[[9.25,{"o":0,"s":1.6}],[9.45,{"o":1,"s":0.8,"e":"out"}],[9.6,{"s":1}],[9.9,{"o":0,"s":1.8}]]'></div>
+        <div class="k3 toque" style="left:172px;top:681px" data-kf='[[9.85,{"o":0,"s":1.6}],[10.05,{"o":1,"s":0.8,"e":"out"}],[10.2,{"s":1}],[10.5,{"o":0,"s":1.8}]]'></div>
+        <div class="k3 toque" style="left:216px;top:913px" data-kf='[[10.5,{"o":0,"s":1.6}],[10.7,{"o":1,"s":0.8,"e":"out"}],[10.85,{"s":1}],[11.15,{"o":0,"s":1.8}]]'></div>
+        <div class="k3 toque" style="left:216px;top:915px" data-kf='[[11.47,{"o":0,"s":1.6}],[11.67,{"o":1,"s":0.8,"e":"out"}],[11.82,{"s":1}],[12.12,{"o":0,"s":1.8}]]'></div>
       </div>
-      <!-- App 2 · Orbe Negocios: Hoy → Inventario → Vender → Reportes, tocando la barra real de la app -->
-      <div class="k3 app" data-kf='[[12.65,{"o":1,"x":440,"s":0.9}],[13.35,{"x":0,"s":1,"e":"suave"}],[16.95,{"x":0,"s":1}],[17.6,{"x":-440,"s":0.9,"e":"suave"}],[17.61,{"o":0,"x":-440,"s":0.9}]]'>
-        <div class="k3 capa" data-kf='[[12.6,{"o":1}]]'><img src="img/negocios-hoy.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[14.08,{"o":0,"x":50}],[14.38,{"o":1,"x":0,"e":"out"}]]'><img src="img/negocios-inventario.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[14.98,{"o":0,"x":-50}],[15.28,{"o":1,"x":0,"e":"out"}]]'><img src="img/negocios-vender.webp" alt=""></div>
-        <div class="k3 capa" data-kf='[[15.88,{"o":0,"y":40}],[16.2,{"o":1,"y":0,"e":"out"}]]'><img src="img/negocios-reportes.webp" alt=""></div>
+      <!-- APP 2 · Orbe Negocios: el contenido se desliza según la posición de cada pestaña; la barra inferior queda fija -->
+      <div class="k3 app" data-kf='[[12.65,{"o":1,"x":440,"s":0.9}],[13.0,{"x":220,"s":0.95,"b":2.5,"e":"in"}],[13.35,{"x":0,"s":1,"b":0,"e":"out"}],[16.95,{"x":0,"s":1}],[17.3,{"x":-220,"s":0.95,"b":2.5,"e":"in"}],[17.6,{"x":-440,"s":0.9,"b":0,"e":"out"}],[17.61,{"o":0,"x":-440,"s":0.9}]]'>
+        <div class="k3 capa contenido" data-kf='[[12.6,{"o":1,"x":0}],[14.05,{"x":0}],[14.45,{"x":-140,"b":0.8,"e":"suave"}],[14.46,{"o":0,"b":0}]]'><img src="img/negocios-hoy.webp" alt=""></div>
+        <div class="k3 capa contenido" data-kf='[[14.05,{"o":1,"x":432}],[14.25,{"x":200,"b":1.2,"e":"in"}],[14.45,{"x":0,"b":0,"e":"out"}],[14.95,{"x":0}],[15.35,{"x":140,"b":0.8,"e":"suave"}],[15.36,{"o":0,"b":0}]]'><img src="img/negocios-inventario.webp" alt=""></div>
+        <div class="k3 capa contenido" data-kf='[[14.95,{"o":1,"x":-432}],[15.15,{"x":-200,"b":1.2,"e":"in"}],[15.35,{"x":0,"b":0,"e":"out"}],[15.85,{"x":0}],[16.25,{"x":-140,"b":0.8,"e":"suave"}],[16.26,{"o":0,"b":0}]]'><img src="img/negocios-vender.webp" alt=""></div>
+        <div class="k3 capa contenido" data-kf='[[15.85,{"o":1,"x":432}],[16.05,{"x":200,"b":1.2,"e":"in"}],[16.25,{"x":0,"b":0,"e":"out"}]]'><img src="img/negocios-reportes.webp" alt=""></div>
+        <div class="k3 capa barra" data-kf='[[12.6,{"o":1}]]'><img src="img/negocios-hoy.webp" alt=""></div>
+        <div class="k3 capa barra" data-kf='[[14.05,{"o":0}],[14.25,{"o":1}]]'><img src="img/negocios-inventario.webp" alt=""></div>
+        <div class="k3 capa barra" data-kf='[[14.95,{"o":0}],[15.15,{"o":1}]]'><img src="img/negocios-vender.webp" alt=""></div>
+        <div class="k3 capa barra" data-kf='[[15.85,{"o":0}],[16.05,{"o":1}]]'><img src="img/negocios-reportes.webp" alt=""></div>
         <div class="k3 toque" style="left:296px;top:910px" data-kf='[[13.75,{"o":0,"s":1.6}],[13.95,{"o":1,"s":0.8,"e":"out"}],[14.1,{"s":1}],[14.4,{"o":0,"s":1.8}]]'></div>
         <div class="k3 toque" style="left:135px;top:910px" data-kf='[[14.65,{"o":0,"s":1.6}],[14.85,{"o":1,"s":0.8,"e":"out"}],[15.0,{"s":1}],[15.3,{"o":0,"s":1.8}]]'></div>
         <div class="k3 toque" style="left:216px;top:905px" data-kf='[[15.55,{"o":0,"s":1.6}],[15.75,{"o":1,"s":0.8,"e":"out"}],[15.9,{"s":1}],[16.2,{"o":0,"s":1.8}]]'></div>
       </div>
-      <!-- App 3 · Página de reservas de muestra (Barbería El Filo) -->
-      <div class="k3 app" style="background:#14120f" data-kf='[[16.95,{"o":1,"x":440,"s":0.9}],[17.6,{"x":0,"s":1,"e":"suave"}]]'>
+      <!-- APP 3 · Página de reservas de muestra (Barbería El Filo) -->
+      <div class="k3 app" style="background:#14120f" data-kf='[[16.95,{"o":1,"x":440,"s":0.9}],[17.3,{"x":220,"s":0.95,"b":2.5,"e":"in"}],[17.6,{"x":0,"s":1,"b":0,"e":"out"}]]'>
         <div class="k3 capa" data-kf='[[16.9,{"o":1}]]'><img src="img/barberia-el-filo-movil.webp" alt=""></div>
       </div>
       <div class="brillo"></div>
     </div></div>
+  </div>
 
   <!-- CIERRE · logo que sube mientras los dispositivos bajan (continuidad de movimiento) -->
   <div class="k3" style="left:425px;top:385px;width:230px;height:230px" data-kf='[[25.7,{"o":0,"y":420,"z":-260}],[26.6,{"o":1,"y":0,"z":0,"e":"out"}]]'>
@@ -150,18 +173,22 @@ body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smo
 <script src="../../herramientas/motor2.js"></script>
 <script src="../../herramientas/motor3d.js"></script>
 <script>
-// Deriva lenta del cielo y máscaras animadas (data-mascara='[[seg, % oculto desde arriba], ...]': la hoja sube desde abajo)
+// Deriva lenta del cielo y máscaras animadas:
+//   data-clip='{"arriba":[[seg,%],...]}'                 la capa aparece desde abajo (% oculto desde arriba)
+//   data-clip='{"circulo":[x,y],"ks":[[seg,radio],...]}'  la capa aparece en un círculo que se abre desde el punto tocado
 (function () {
   const c = document.querySelector('.cielo'), b = window.pintar;
   const suave = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-  const mas = [...document.querySelectorAll('[data-mascara]')].map(el => ({ el, ks: JSON.parse(el.dataset.mascara) }));
+  const val = (ks, t) => { if (t <= ks[0][0]) return ks[0][1]; if (t >= ks[ks.length - 1][0]) return ks[ks.length - 1][1];
+    let i = 0; while (t >= ks[i + 1][0]) i++; return ks[i][1] + (ks[i + 1][1] - ks[i][1]) * suave((t - ks[i][0]) / (ks[i + 1][0] - ks[i][0])); };
+  const clips = [...document.querySelectorAll('[data-clip]')].map(el => ({ el, c: JSON.parse(el.dataset.clip) }));
   window.pintar = t => {
     b(t);
     c.style.transform = `translateY(${-t * 3}px) scale(${1 + t * 0.002})`;
-    for (const m of mas) { const ks = m.ks; let v;
-      if (t <= ks[0][0]) v = ks[0][1]; else if (t >= ks[ks.length - 1][0]) v = ks[ks.length - 1][1];
-      else { let i = 0; while (t >= ks[i + 1][0]) i++; v = ks[i][1] + (ks[i + 1][1] - ks[i][1]) * suave((t - ks[i][0]) / (ks[i + 1][0] - ks[i][0])); }
-      m.el.style.clipPath = `inset(${v}% 0 0 0)`; }
+    for (const { el, c: k } of clips) {
+      if (k.arriba) el.style.clipPath = `inset(${val(k.arriba, t)}% 0 0 0)`;
+      else el.style.clipPath = `circle(${val(k.ks, t)}px at ${k.circulo[0]}px ${k.circulo[1]}px)`;
+    }
   };
   window.pintar(0);
 })();

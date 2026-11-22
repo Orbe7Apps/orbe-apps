@@ -1,32 +1,32 @@
 1
-00:00:00,350 --> 00:00:03,517
+00:00:00,350 --> 00:00:03,656
 Tu negocio necesita más que una presencia digital.
 
 2
-00:00:03,850 --> 00:00:06,026
+00:00:03,850 --> 00:00:05,764
 Necesita herramientas que funcionen.
 
 3
-00:00:06,500 --> 00:00:09,300
+00:00:06,500 --> 00:00:09,163
 En Orbe Apps desarrollamos catálogos digitales
 
 4
-00:00:09,300 --> 00:00:12,372
+00:00:09,163 --> 00:00:12,053
 para mostrar tus productos y facilitar tus pedidos.
 
 5
-00:00:13,000 --> 00:00:16,781
+00:00:13,000 --> 00:00:16,225
 Creamos aplicaciones que simplifican la gestión de tu negocio
 
 6
-00:00:17,150 --> 00:00:21,031
+00:00:17,150 --> 00:00:20,683
 y páginas web que conectan tus servicios con más personas.
 
 7
-00:00:21,500 --> 00:00:25,654
+00:00:21,500 --> 00:00:24,657
 Tecnología práctica, diseñada para trabajar contigo.
 
 8
-00:00:26,200 --> 00:00:28,949
+00:00:26,200 --> 00:00:28,956
 Orbe Apps. Software pensado para negocios.
 
