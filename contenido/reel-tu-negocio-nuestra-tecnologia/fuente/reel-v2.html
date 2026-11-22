@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Reel «Tu negocio. Nuestra tecnología.» — Orbe Apps · VERSIÓN 2 (23 s, 1080x1920, 30 fps).
+     Misma dirección visual que la versión 1 (fuente/reel-v1.html). Cambios: entrada desde el primer cuadro,
+     catálogo interactivo con toques reales, secuencia de Orbe Negocios, paso del teléfono a la computadora y nuevo cierre.
+     Proyecto editable: cada escena es un bloque comentado; los tiempos están en segundos.
+     Animación: herramientas/motor2.js (textos) + herramientas/motor3d.js (dispositivos 3D, estados, toques y trazos).
+     Grabar: node herramientas/grabar-reel.js reel-tu-negocio-nuestra-tecnologia/fuente/reel.html video.mp4 23 21.5 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+:root { --noche: #0b0a14; --morado: #6a5cf2; --lila: #8f84ff; --lila-claro: #c9c0ff; --verde: #3ddc9f; --claro: #f4f3fb; --gris: #9a97b8; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { font-family: "Manrope", sans-serif; color: var(--claro); -webkit-font-smoothing: antialiased;
+  background: radial-gradient(1100px 900px at 80% 12%, #241f55 0%, transparent 60%), radial-gradient(900px 800px at 5% 92%, #18163a 0%, transparent 62%), var(--noche); }
+.cielo { position: absolute; inset: -80px; }
+.estrella { position: absolute; border-radius: 50%; background: #e6e3ff; }
+.mundo { position: absolute; inset: 0; perspective: 2000px; perspective-origin: 50% 52%; transform-style: preserve-3d; }
+.k3 { position: absolute; opacity: 0; transform-style: preserve-3d; will-change: transform, opacity; }
+.textos { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+[data-a] { opacity: 0; will-change: transform, opacity; }
+.centro { position: absolute; left: 90px; right: 150px; text-align: center; }
+.izqda { position: absolute; left: 90px; right: 150px; }
+.etiqueta { font: 700 30px "Manrope"; letter-spacing: .16em; text-transform: uppercase; color: var(--lila-claro); display: flex; align-items: center; gap: 16px; }
+.etiqueta i { width: 12px; height: 12px; border-radius: 50%; background: var(--verde); }
+.titulo { font: 800 88px/1.02 "Sora"; letter-spacing: -.045em; }
+.sub { font: 600 42px/1.32 "Manrope"; color: #c3bfe3; }
+.halo { width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(106,92,242,.42) 0%, rgba(106,92,242,.12) 40%, transparent 70%); }
+/* Sombra de contacto bajo los dispositivos (integra el mockup con el fondo) */
+.suelo { width: 520px; height: 90px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.75), transparent); filter: blur(8px); }
+/* Teléfono */
+.tel { width: 460px; height: 996px; border-radius: 68px; padding: 14px; background: linear-gradient(145deg, #3a3758, #121022 40%, #0a0914 60%, #2c2a46);
+  box-shadow: 0 70px 120px -50px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08), inset 0 0 0 2px rgba(255,255,255,.06), 0 0 90px -30px rgba(143,132,255,.55); }
+.tel .pantalla { position: relative; width: 100%; height: 100%; border-radius: 55px; overflow: hidden; background: #fff; }
+.tel .pantalla img { width: 100%; display: block; }
+.tel .isla { position: absolute; top: 14px; left: 50%; width: 120px; height: 34px; margin-left: -60px; border-radius: 20px; background: #05040a; z-index: 4; }
+.estado { position: absolute; left: 0; top: 0; width: 432px; }
+.estado img { width: 432px; display: block; }
+.tira { position: absolute; left: 0; top: 0; display: flex; width: 1296px; }
+.tira img { width: 432px; height: 968px; object-fit: cover; object-position: top; display: block; }
+/* Toque en pantalla (indicador de interacción) */
+.toque { width: 84px; height: 84px; border-radius: 50%; background: rgba(255,255,255,.55); border: 3px solid rgba(255,255,255,.95); box-shadow: 0 0 0 10px rgba(143,132,255,.35), 0 8px 24px rgba(0,0,0,.35); z-index: 5; }
+.brillo { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.14) 50%, transparent 60%); background-size: 320% 100%; mix-blend-mode: screen; z-index: 3; pointer-events: none; }
+/* Computadora */
+.lap { width: 880px; }
+.lap .marco { position: relative; width: 880px; height: 568px; border-radius: 30px; padding: 22px 22px 26px; background: linear-gradient(160deg, #34314f, #121022 45%, #0b0a14);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 60px 110px -40px rgba(0,0,0,.9), 0 0 120px -40px rgba(143,132,255,.5); }
+.lap .marco .pantalla { position: relative; width: 836px; height: 520px; border-radius: 10px; overflow: hidden; background: #fff; }
+.lap .marco img { width: 100%; display: block; transform: scale(1.13); transform-origin: 50% 0; }  /* recorta el borde de la sección siguiente */
+.lap .base { width: 1000px; margin-left: -60px; height: 30px; border-radius: 4px 4px 26px 26px; background: linear-gradient(180deg, #4a4768, #24223a 60%, #15142a); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); }
+.lap .base::before { content: ""; display: block; width: 160px; height: 10px; margin: 0 auto; border-radius: 0 0 12px 12px; background: #15142a; }
+.chip { display: flex; align-items: center; gap: 16px; padding: 22px 30px; border-radius: 26px; background: rgba(24,22,48,.9); border: 1px solid rgba(201,192,255,.22); font: 700 34px "Manrope"; white-space: nowrap; box-shadow: 0 30px 60px -30px #000; }
+.chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--verde); }
+.chip b { color: var(--lila-claro); font-weight: 800; }
+.cta { display: inline-block; padding: 32px 62px; border-radius: 999px; background: linear-gradient(135deg, #7d6fff, #5a4bf0); font: 800 46px "Sora"; letter-spacing: .02em; box-shadow: 0 26px 60px -24px rgba(106,92,242,.95); }
+.usuario { display: inline-block; padding: 18px 40px; border-radius: 999px; border: 2px solid rgba(201,192,255,.55); background: rgba(11,10,20,.7); font: 800 46px "Manrope"; color: #fff; }
+.separador { color: var(--lila); padding: 0 14px; }
+</style></head><body data-bpm="96">
+<div class="cielo"></div>
+
+<div class="mundo">
+  <div class="k3 halo" style="left:90px;top:640px" data-kf='[[0,{"o":0.7,"s":0.85,"y":-200}],[1.2,{"o":1,"s":1,"y":-120}],[2.6,{"y":0}],[8,{"x":60,"y":40}],[12.6,{"x":-40,"y":80}],[17,{"x":0,"y":0}],[23,{"y":-200,"s":1.1}]]'></div>
+
+  <!-- ESCENA 1 · Introducción (0 a 2,6 s): el logotipo ya está en el primer cuadro y avanza hacia la cámara -->
+  <div class="k3" style="left:390px;top:430px;width:300px;height:300px" data-kf='[[0,{"o":1,"z":300,"rx":-24,"ry":14,"s":1}],[1.0,{"z":0,"rx":0,"ry":0,"e":"out"}],[2.2,{"z":-30,"y":-10}],[2.65,{"o":0,"z":-420,"y":-40,"e":"in"}]]'>
+    <svg width="300" height="300" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="-0.45,0.9"/>
+      <mask id="franja1" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="14"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#franja1)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="-0.3,1.05"/>
+      <g data-orbita="1.2"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+
+  <!-- ESCENA 2 · Catálogos digitales (2,6 a 8 s): estados reales del catálogo Dulce Hogar con sus toques -->
+  <div class="k3 suelo" style="left:280px;top:1610px" data-kf='[[2.6,{"o":0}],[3.4,{"o":1}],[7.6,{"o":1}],[8.0,{"o":0}]]'></div>
+  <div class="k3 tel" style="left:310px;top:620px" data-kf='[[2.45,{"o":0,"z":-460,"ry":-20,"rx":6,"y":70}],[3.3,{"o":1,"z":0,"ry":-7,"rx":2,"y":0,"e":"out"}],[7.4,{"ry":3,"rx":1,"z":50}],[8.0,{"o":0,"z":250,"ry":6,"e":"in"}]]'>
+    <div class="pantalla">
+      <div class="k3 estado" data-kf='[[2.4,{"o":1}]]'><img src="img/catalogo-estado-a.webp" alt=""></div>
+      <div class="k3 estado" data-kf='[[4.32,{"o":0}],[4.42,{"o":1}]]'><img src="img/catalogo-estado-b.webp" alt=""></div>
+      <div class="k3 estado" data-kf='[[5.02,{"o":0}],[5.12,{"o":1}]]'><img src="img/catalogo-estado-c.webp" alt=""></div>
+      <div class="k3 estado" data-kf='[[6.12,{"o":0,"y":120}],[6.45,{"o":1,"y":0,"e":"out"}]]'><img src="img/catalogo-estado-d.webp" alt=""></div>
+      <div class="k3 toque" style="left:131px;top:615px" data-kf='[[4.0,{"o":0,"s":1.5}],[4.3,{"o":1,"s":0.85,"e":"out"}],[4.45,{"s":1}],[4.75,{"o":0,"s":1.5}]]'></div>
+      <div class="k3 toque" style="left:132px;top:616px" data-kf='[[4.7,{"o":0,"s":1.5}],[5.0,{"o":1,"s":0.85,"e":"out"}],[5.15,{"s":1}],[5.45,{"o":0,"s":1.5}]]'></div>
+      <div class="k3 toque" style="left:174px;top:840px" data-kf='[[5.8,{"o":0,"s":1.5}],[6.1,{"o":1,"s":0.85,"e":"out"}],[6.25,{"s":1}],[6.55,{"o":0,"s":1.5}]]'></div>
+      <div class="brillo"></div></div><div class="isla"></div></div>
+
+  <!-- ESCENA 3 · Aplicaciones (8 a 12,6 s): Orbe Negocios en secuencia — vender, inventario y reportes -->
+  <div class="k3 suelo" style="left:280px;top:1610px" data-kf='[[8.0,{"o":0}],[8.8,{"o":1}],[12.1,{"o":1}],[12.6,{"o":0}]]'></div>
+  <div class="k3 tel" style="left:310px;top:620px" data-kf='[[7.9,{"o":0,"z":-420,"y":90,"ry":12}],[8.7,{"o":1,"z":0,"y":0,"ry":4,"rx":2,"e":"out"}],[12.0,{"ry":-4,"rx":0,"z":40}],[12.65,{"o":0,"z":-380,"y":-30,"e":"in"}]]'>
+    <div class="pantalla">
+      <div class="k3 tira" data-kf='[[7.9,{"o":1,"x":0}],[9.55,{"x":0}],[9.95,{"x":-432,"e":"suave"}],[10.95,{"x":-432}],[11.35,{"x":-864,"e":"suave"}]]'>
+        <img src="img/negocios-vender.webp" alt=""><img src="img/negocios-inventario.webp" alt=""><img src="img/negocios-reportes.webp" alt=""></div>
+      <div class="brillo"></div></div><div class="isla"></div></div>
+
+  <!-- ESCENA 4 · Desarrollo web (12,6 a 17 s): el teléfono se encoge hasta convertirse en el teléfono de la web en la computadora -->
+  <div class="k3 lap" style="left:100px;top:880px" data-kf='[[14.25,{"o":0,"z":0}],[14.85,{"o":1,"z":0}],[15.45,{"z":0,"rx":0}],[16.5,{"z":-70,"rx":5,"y":-24,"e":"suave"}],[17.05,{"o":0,"z":-320,"e":"in"}]]'>
+    <div class="marco"><div class="pantalla"><img src="img/web-orbe-apps-pc.webp" alt=""><div class="brillo"></div></div></div><div class="base"></div></div>
+  <div class="k3 tel" style="left:310px;top:620px" data-kf='[[12.5,{"o":0,"z":-420,"ry":-12}],[13.3,{"o":1,"z":0,"ry":-3,"e":"out"}],[14.25,{"ry":0,"rx":0,"z":0}],[15.3,{"x":214,"y":-24,"s":0.37,"e":"suave"}],[15.5,{"o":0,"x":214,"y":-24,"s":0.37}]]'>
+    <div class="pantalla"><img src="img/barberia-el-filo-movil.webp" alt=""><div class="brillo"></div></div><div class="isla"></div></div>
+</div>
+
+<div class="textos">
+  <!-- Etiquetas de las escenas 2 y 3 (en la capa de textos para quedar siempre delante) -->
+  <div class="k3 chip" style="left:90px;top:1400px" data-kf='[[4.4,{"o":0,"x":-40,"z":20}],[4.8,{"o":1,"x":0,"z":26,"e":"out"}],[5.9,{"z":27}],[6.15,{"o":0,"z":30}]]'><i></i>Tu cliente elige</div>
+  <div class="k3 chip" style="left:90px;top:1400px" data-kf='[[6.3,{"o":0,"x":-40,"z":20}],[6.7,{"o":1,"x":0,"z":26,"e":"out"}],[7.6,{"z":28}],[8.0,{"o":0,"z":30}]]'><i></i>Pedido completo por WhatsApp</div>
+  <div class="k3 chip" style="left:90px;top:1400px" data-kf='[[8.6,{"o":0,"x":-40,"z":20}],[9.0,{"o":1,"x":0,"z":26,"e":"out"}],[9.55,{"z":27}],[9.8,{"o":0,"z":30}]]'><b>1</b>Cobra tus ventas</div>
+  <div class="k3 chip" style="left:90px;top:1400px" data-kf='[[9.85,{"o":0,"x":-40,"z":20}],[10.2,{"o":1,"x":0,"z":26,"e":"out"}],[10.95,{"z":27}],[11.2,{"o":0,"z":30}]]'><b>2</b>Controla tu inventario</div>
+  <div class="k3 chip" style="left:90px;top:1400px" data-kf='[[11.25,{"o":0,"x":-40,"z":20}],[11.6,{"o":1,"x":0,"z":26,"e":"out"}],[12.2,{"z":28}],[12.5,{"o":0,"z":30}]]'><b>3</b>Revisa tus reportes</div>
+  <!-- ESCENA 1 · frase -->
+  <p class="centro titulo" style="top:880px;font-size:74px" data-palabras="sube" data-in="0.25" data-out="2.45">Las ideas de tu negocio merecen mejores herramientas.</p>
+
+  <!-- ESCENA 2 · Catálogos digitales -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="2.75" data-out="7.85"><i></i>Catálogo interactivo</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="2.85" data-out="7.85">Catálogos digitales.</p>
+  <p class="izqda sub" style="top:510px" data-a="sube" data-in="3.3" data-out="7.85">Productos, precios y pedidos en un solo lugar.</p>
+
+  <!-- ESCENA 3 · Aplicaciones -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="8.15" data-out="12.45"><i></i>Orbe Negocios</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="8.25" data-out="12.45">Aplicaciones para trabajar mejor.</p>
+  <p class="izqda sub" style="top:510px" data-a="sube" data-in="8.8" data-out="12.45">Soluciones diseñadas para tu negocio.</p>
+
+  <!-- ESCENA 4 · Desarrollo web -->
+  <p class="izqda etiqueta" style="top:250px" data-a="sube" data-in="12.75" data-out="16.85"><i></i>Páginas web</p>
+  <p class="izqda titulo" style="top:310px" data-palabras="sube" data-in="12.85" data-out="16.85">Tu presencia digital también importa.</p>
+  <p class="izqda sub" style="top:510px" data-a="sube" data-in="14.6" data-out="16.85">Del teléfono a la computadora.</p>
+
+  <!-- ESCENA 5 · Cierre comercial (17 a 23 s) -->
+  <div class="centro" style="top:300px" data-a="escala" data-in="16.9" data-d="1.0">
+    <svg width="230" height="230" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-22 60 60)">
+      <path d="M6 60 A54 17 0 0 1 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="17.0,17.9"/>
+      <mask id="franja2" maskUnits="userSpaceOnUse" x="-20" y="-20" width="160" height="160"><rect x="-20" y="-20" width="160" height="160" fill="#fff"/><path d="M25.3 73 A54 17 0 0 0 94.7 73" fill="none" stroke="#000" stroke-width="14"/></mask>
+      <circle cx="60" cy="60" r="30" fill="#6a5cf2" mask="url(#franja2)"/>
+      <path d="M6 60 A54 17 0 0 0 114 60" fill="none" stroke="#8f84ff" stroke-width="6" stroke-linecap="round" data-trazo="17.2,18.1"/>
+      <g data-orbita="0"><circle r="11" fill="#0b0a14"/><circle r="7.5" fill="#3ddc9f"/></g></g></svg></div>
+  <h1 class="centro titulo" style="top:560px;font-size:112px;letter-spacing:.01em" data-letras="sube" data-in="17.35">ORBE APPS</h1>
+  <p class="centro sub" style="top:700px;font-size:46px;color:#efeefe" data-a="sube" data-in="18.3">Software pensado para negocios.</p>
+  <p class="centro" style="top:785px;font:700 40px Manrope;color:#c9c0ff;letter-spacing:.02em" data-a="sube" data-in="18.6">Webs<span class="separador">·</span>Catálogos<span class="separador">·</span>Apps</p>
+  <p class="centro" style="top:930px;font:700 54px/1.18 Sora;letter-spacing:-.03em;color:#fff" data-palabras="sube" data-in="19.0">¿Necesitas una solución digital para tu negocio?</p>
+  <div class="centro" style="top:1130px" data-a="escala" data-in="19.8" data-latido><span class="cta">ESCRÍBENOS POR DM</span></div>
+  <div class="centro" style="top:1320px" data-a="sube" data-in="20.2"><span class="usuario">@orbe.apps</span></div>
+</div>
+
+<script>
+// Cielo con estrellas, fijo y discreto (mismas posiciones en cada grabación)
+(function () { let s = 11; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; const c = document.querySelector('.cielo');
+  for (let i = 0; i < 140; i++) { const d = document.createElement('i'), z = [2, 2, 2, 3, 3, 4][Math.floor(r() * 6)]; d.className = 'estrella'; d.style.cssText = `left:${r() * 1240}px;top:${r() * 2080}px;width:${z}px;height:${z}px;opacity:${0.25 + r() * 0.5}`; c.appendChild(d); } })();
+</script>
+<script src="../../herramientas/motor2.js"></script>
+<script src="../../herramientas/motor3d.js"></script>
+<script>
+// Deriva lenta del cielo (cámara que avanza)
+(function () { const c = document.querySelector('.cielo'), b = window.pintar; window.pintar = t => { b(t); c.style.transform = `translateY(${-t * 3}px) scale(${1 + t * 0.002})`; }; window.pintar(0); })();
+</script>
+</body></html>

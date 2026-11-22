@@ -1,6 +1,6 @@
 # Reel: Tu negocio. Nuestra tecnología.
 
-`reel.mp4` (versión 2): 1080x1920, 23 s, 30 fps, H.264 + AAC, música instrumental original y efectos de interfaz. `reel-portada.png`: portada 1080x1920 (cierre con el logo).
+`reel.mp4` (versión 3): 1080x1920, 30 s, 30 fps, H.264 + AAC, voz en off, subtítulos, música instrumental original y efectos de interfaz. Guion: `guion.md`. Subtítulos: `subtitulos.srt`. `reel-portada.png`: portada 1080x1920 (cierre con el logo).
 Informe de producción: `INFORME.md`. Proyecto editable: `fuente/reel.html`.
 
 ## Texto del post

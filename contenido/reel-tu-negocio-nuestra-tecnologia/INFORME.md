@@ -1,6 +1,46 @@
 # Informe de producción · «Tu negocio. Nuestra tecnología.»
 
-## Versión 2 (actual)
+## Versión 3 (actual) · transiciones con continuidad, interacciones y voz en off
+Misma identidad aprobada. Fuentes anteriores conservadas: `fuente/reel-v1.html` y `fuente/reel-v2.html`.
+
+### Qué cambió
+| Pedido | Solución |
+|---|---|
+| Pantallas que aparecían y desaparecían de golpe | **Un solo teléfono de principio a fin.** Las pantallas cambian dentro de él como en un teléfono real: desplazamiento, estados que cambian al tocar, una hoja que sube con máscara y cambio de app deslizando (la app actual se va a la izquierda y la nueva entra por la derecha). Sin cortes ni fundidos a negro. |
+| Entrada | El logo está en pantalla desde el primer cuadro y la cámara lo atraviesa (*push-in*) para descubrir el teléfono. |
+| Catálogo | Desplazamiento vertical real por el catálogo (las tarjetas entran solas), vuelta arriba, toque en «+» de la torta de chocolate, segundo «+», «Ver mi pedido» y la hoja «Mi pedido» que sube. Son 5 capturas reales a la misma escala, por eso no hay saltos. Se muestra el resumen del pedido, que existe en el producto real. |
+| Orbe Negocios | Navegación con la barra real de la app: Hoy → (toque en Inventario) Inventario → (toque en Vender) Nueva venta → (toque en el botón central) Reportes. Cada pantalla entra con un pequeño desplazamiento, como en la app. No se inventaron controles. |
+| Página web | La cámara se desplaza hacia la derecha: el teléfono se aparta a primer plano y aparece la computadora, con la web de Orbe Apps desplazándose suavemente. Es un tramo sin precios («Vender por chat…», «Apps reales…» y la sección de Orbe Negocios), armado con capturas reales consecutivas. |
+| Cierre | Los dispositivos bajan mientras sube el logo (continuidad de movimiento) y aparecen los textos del cierre aprobado en la versión 2. |
+| Voz en off | Narración exacta del guion, en voz mexicana neutra («claude», Piper, generada en el equipo). Ver `guion.md`. |
+| Subtítulos | Blancos, en Sora, con las palabras clave en lila. Arriba de la pantalla, sincronizados frase por frase con la voz (`subtitulos.srt`). |
+| Mezcla | Voz al frente (ecualización y compresión suaves). La música baja automáticamente cuando habla la voz (*ducking* con compresor de cadena lateral, relación 10:1). Efectos de interfaz en cada toque y cada cambio de app. Limitador y −14 LUFS. |
+
+### Comprobación del archivo exportado
+- `reel.mp4`: **1080x1920**, 9:16 (píxel cuadrado), 30 fps, H.264 High, AAC 192 kbps estéreo, 30,0 s. Volumen integrado −14,2 LUFS, pico −1,4 dBFS, sin saturación.
+- `reel-portada.png`: 1080x1920.
+- Transcripción automática del audio final (voz con música y efectos): se entiende la narración completa; solo la marca final suena algo distinta («Orbeax»).
+- Nivel: la voz queda unos 5 dB por encima de la música, que baja mientras hay voz.
+- Revisión del video completo a 2 cuadros por segundo: continuidad entre todas las escenas, sin pantallas que desaparezcan de golpe, interfaces sin deformar (misma proporción de las capturas) y textos dentro de la zona segura. Se corrigió la posición del teléfono en la escena web, que quedaba en la zona de los controles de Instagram.
+
+### Limitaciones (dichas con claridad)
+- **La voz es sintética.** Se generó con Piper, gratis y en el equipo. Suena natural para ser gratuita, pero no es una locución humana ni de nivel ElevenLabs. Para una voz más cálida, `guion.md` explica cómo reemplazarla manteniendo los tiempos.
+- **Orbe Negocios:** solo hay capturas estáticas de 4 pantallas (Hoy, Vender, Inventario y Reportes). La navegación se arma con ellas y con toques en botones que existen. No hay grabación real de la app.
+- **Web:** las secciones de la web se revelan al desplazarse, así que el recorrido se armó uniendo pantallas consecutivas capturadas mientras se desplazaba. Hay una unión muy leve entre dos de ellas.
+
+### Archivos de la versión 3
+`reel.mp4`, `reel-portada.png`, `guion.md`, `subtitulos.srt`, `fuente/reel.html` (proyecto editable), `fuente/voz-en-off.wav`, `fuente/voz/frase1-7.wav`, `fuente/musica.wav`, `fuente/efectos.wav` y `fuente/img/` (recursos nuevos: `catalogo-estado-a` a `d`, `web-orbe-apps-recorrido.webp`).
+
+### Cómo regenerarlo
+Desde `contenido/`:
+1. Video: `node herramientas/grabar-reel.js reel-tu-negocio-nuestra-tecnologia/fuente/reel.html video.mp4 30 29.5`
+2. Música: `python3 herramientas/musica.py musica.wav 30 3.9,12.7,17.0,18.4,25.6 --final 25.6`
+3. Voz: las 7 frases con `adelay` en 350 · 3850 · 6500 · 13000 · 17150 · 21500 · 26200 ms y la cadena `highpass=f=80,equalizer=f=220:t=q:w=1:g=-1.5,equalizer=f=3000:t=q:w=1.2:g=2.5,equalizer=f=7500:t=h:w=2000:g=1.5,acompressor=threshold=-22dB:ratio=2.5:attack=8:release=80:makeup=2,deesser=i=0.2,loudnorm=I=-16:TP=-2`.
+4. Mezcla: música a 0,42 con `sidechaincompress=threshold=0.02:ratio=10:attack=20:release=400` disparado por la voz, efectos a 0,7, `afade` final, `alimiter=limit=0.89` y `loudnorm=I=-14:TP=-1.5`.
+
+---
+
+## Versión 2
 Mejoras de ejecución sobre la versión 1, con la misma dirección visual (fondos oscuros, morados, Sora y Manrope, logo original y productos reales). El código de la versión 1 se conserva en `fuente/reel-v1.html`.
 
 | Pedido | Qué se hizo |
