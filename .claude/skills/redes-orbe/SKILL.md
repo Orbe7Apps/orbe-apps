@@ -21,7 +21,7 @@ Antes de poner un precio, confírmalo en Notion: página "Orbe Apps · Plan del 
 - Microapps (demo): https://orbe7apps.github.io/orbe-apps/apps/
 - Catálogo de muestra: https://orbe7apps.github.io/orbe-apps/catalogos/dulce-hogar/
 - Reservas de muestra: https://orbe7apps.github.io/orbe-apps/reservas/barberia-el-filo/
-- Contacto: DM de Instagram @orbe.apps (todavía no hay WhatsApp de trabajo).
+- Contacto: DM de Instagram @orbe.apps o correo orbeappsoficial@gmail.com (todavía no hay WhatsApp de trabajo).
 Nunca uses enlaces de la cuenta gllm57.
 
 ## Reglas de contenido
