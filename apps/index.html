@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Microapps · Orbe Apps</title>
-<meta name="description" content="Microapps para tu negocio a 17 USD, pago único: inventario, agenda de citas, fiados y presupuesto. Pruébalas gratis.">
-<meta property="og:title" content="Microapps a $17 · Orbe Apps">
+<meta name="description" content="Microapps para tu negocio, pago único: inventario, agenda de citas, fiados y presupuesto. Pruébalas gratis.">
+<meta property="og:title" content="Microapps · Orbe Apps">
 <meta property="og:description" content="Inventario, agenda de citas, fiados y presupuesto. Pago único, sin mensualidad. Pruébalas gratis.">
 <meta property="og:image" content="https://orbe7apps.github.io/orbe-apps/portada.png?v=2">
 <meta name="theme-color" content="#0b0a14">
@@ -37,10 +37,10 @@
 .pasos b { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--paper); margin-right: 8px; font: 600 12px var(--display); }</style>
 </head>
 <body>
-<header class="cab"><div class="envoltura"><div class="eti">Microapps listas · Orbe Apps</div><h1>Apps para tu negocio a <span>$17</span>.</h1><p>Pago único, sin mensualidad. Ábrelas y mira cómo funcionan con un negocio de ejemplo.</p></div></header>
+<header class="cab"><div class="envoltura"><div class="eti">Microapps listas · Orbe Apps</div><h1>Apps listas para <span>tu negocio</span>.</h1><p>Pago único, sin mensualidad. Ábrelas y mira cómo funcionan con un negocio de ejemplo.</p></div></header>
 <main class="envoltura">
   <div class="apps" id="apps"></div>
-  <div class="pasos"><div><b>1</b>Pruébala con un ejemplo real</div><div><b>2</b>Pagas $17 una sola vez</div><div><b>3</b>Te llega tu código y queda tuya</div></div>
+  <div class="pasos"><div><b>1</b>Pruébala con un ejemplo real</div><div><b>2</b>Pides tu cotización y pagas una sola vez</div><div><b>3</b>Te llega tu código y queda tuya</div></div>
   <p class="texto-ayuda" style="margin-top:18px;text-align:center">Tus datos se guardan solo en tu teléfono. Funcionan sin internet y se instalan como una app.</p>
   <p class="marca-pie"><a href="../">¿Necesitas algo a tu medida? Mira todos los servicios</a></p>
 </main>
@@ -52,8 +52,8 @@ const apps = [
   ['fiados', 'Cuaderno de fiados', 'Para fiar sin perder', '#f08c00', '#fff', '<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><circle cx="17" cy="15.5" r="3.2"/>', 'Quién te debe, cuánto y desde cuándo, con abonos.', ['Total por cobrar al instante', 'Cuenta lista para mandar por WhatsApp', 'Aviso de deudas viejas']],
   ['presupuesto', 'Presupuesto del mes', 'Para tus cuentas', '#e64980', '#fff', '<path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/>', 'Cuánto entra, cuánto sale y cuánto te queda este mes.', ['Límites por categoría', 'Aviso antes de pasarte', 'Mes a mes, en tu moneda']]
 ];
-document.getElementById('apps').innerHTML = apps.map(([id, n, tag, c, ink, g, d, li]) => `<article class="app" style="--ac:${c}"><div class="top"><img class="ico" src="${id}/icono.svg" alt="" width="52" height="52"><div><small>${tag}</small><h2>${n}</h2></div></div><p>${d}</p><ul>${li.map(x => `<li>${x}</li>`).join('')}</ul><div class="botones"><a class="btn" href="${id}/">Ver ejemplo</a><a class="btn oscuro" href="${IG}" target="_blank" rel="noopener" data-app="${n}">Comprar $17</a></div></article>`).join('');
-document.querySelectorAll('[data-app]').forEach(a => a.addEventListener('click', () => { try { navigator.clipboard.writeText(`Hola, quiero comprar la microapp ${a.dataset.app} de $17.`); } catch (e) {} }));
+document.getElementById('apps').innerHTML = apps.map(([id, n, tag, c, ink, g, d, li]) => `<article class="app" style="--ac:${c}"><div class="top"><img class="ico" src="${id}/icono.svg" alt="" width="52" height="52"><div><small>${tag}</small><h2>${n}</h2></div></div><p>${d}</p><ul>${li.map(x => `<li>${x}</li>`).join('')}</ul><div class="botones"><a class="btn" href="${id}/">Ver ejemplo</a><a class="btn oscuro" href="${IG}" target="_blank" rel="noopener" data-app="${n}">Cotizar</a></div></article>`).join('');
+document.querySelectorAll('[data-app]').forEach(a => a.addEventListener('click', () => { try { navigator.clipboard.writeText(`Hola, quiero cotizar la microapp ${a.dataset.app}.`); } catch (e) {} }));
 </script>
 </body>
 </html>

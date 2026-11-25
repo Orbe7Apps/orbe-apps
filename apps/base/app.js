@@ -173,8 +173,8 @@
         titulo: 'Activa tu app',
         cuerpo: `${motivo ? `<p class="texto-ayuda" style="font-size:15px">${esc(motivo)}</p>` : ''}
           <label class="campo">Código de activación<input name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="${Orbe.app.prefijo}-XXXX-XXXX"></label>
-          <div class="tarjeta p" style="display:flex;gap:12px;align-items:center"><img src="icono.svg" alt="" width="52" height="52" style="flex-shrink:0;border-radius:12px;box-shadow:0 10px 20px -12px rgba(20,21,28,.6)"><span><b style="font-size:20px">17 USD</b><br><span class="texto-ayuda">Pago único. Es tuya para siempre, sin mensualidad.</span></span></div>`,
-        pie: `<button class="btn principal ancho" type="submit">Activar</button><a class="btn ancho" href="${IG}" target="_blank" rel="noopener">Comprar por Instagram</a>`
+          <div class="tarjeta p" style="display:flex;gap:12px;align-items:center"><img src="icono.svg" alt="" width="52" height="52" style="flex-shrink:0;border-radius:12px;box-shadow:0 10px 20px -12px rgba(20,21,28,.6)"><span><b style="font-size:20px">Pago único</b><br><span class="texto-ayuda">Es tuya para siempre, sin mensualidad. Pide tu cotización por Instagram.</span></span></div>`,
+        pie: `<button class="btn principal ancho" type="submit">Activar</button><a class="btn ancho" href="${IG}" target="_blank" rel="noopener">Cotizar por Instagram</a>`
       });
       const f = d.querySelector('form');
       f.onsubmit = e => {
