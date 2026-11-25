@@ -53,7 +53,10 @@ p { margin: 0; }
 /* ---------- Portada ---------- */
 .portada { position: relative; background: radial-gradient(1200px 600px at 75% 30%, #241f55 0%, transparent 60%), var(--noche); color: var(--luz); overflow: hidden; }
 #cielo { position: absolute; inset: 0; width: 100%; height: 100%; }
-.nav { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-block: 20px; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding-block: 20px; padding-inline: max(20px, calc((100% - 1180px) / 2 + 20px)); transition: background .3s, padding .3s, box-shadow .3s; }
+.nav.pegado { background: rgba(11,10,20,.9); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 18px 40px -24px rgba(0,0,0,.6); padding-block: 12px; }
+.portada > .wrap { padding-top: 82px; }
+[id] { scroll-margin-top: 84px; }
 .logo-anim { transition: transform .6s var(--suave); }
 .marca:hover .logo-anim { transform: rotate(-12deg) scale(1.08); }
 .marca { display: flex; align-items: center; gap: 10px; font: 800 1.15rem var(--display); letter-spacing: -.03em; text-decoration: none; }
@@ -288,6 +291,9 @@ footer a { color: var(--luz); }
   .btn { padding: .9em 1.25em; }
   /* Portada: texto primero, teléfono derecho y más pequeño */
   .nav { padding-block: 14px; }
+  .nav.pegado { padding-block: 10px; }
+  .portada > .wrap { padding-top: 70px; }
+  [id] { scroll-margin-top: 70px; }
   .nav-links .btn { padding: .6em 1em; font-size: .85rem; }
   .hero { padding-block: 12px 56px; gap: 8px; }
   .hero h1 { font-size: 2.9rem; }
@@ -630,8 +636,8 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
     <div class="micro-cab">
       <div class="cab" style="margin-bottom:0">
         <div class="eti rev">Apps listas</div>
-        <h2 class="rev" style="--d:.08s">Una app para cada problema.<br><span class="gira-suave">Lista para usar.</span></h2>
-        <p class="rev" style="--d:.14s">Herramientas pequeñas que resuelven una sola cosa y la resuelven bien. Mira cómo funcionan con un negocio de ejemplo y, si te sirven, te enviamos la cotización. ¿Quieres una con tu marca o con cambios? Esa la hacemos a medida.</p>
+        <h2 class="rev" style="--d:.08s">Una app para cada problema.<br><span class="gira-suave">Pruébala antes.</span></h2>
+        <p class="rev" style="--d:.14s">Inventario, citas, fiados, presupuesto, catálogo con pedidos y reservas. Ábrelas con un negocio de ejemplo y, si alguna te sirve, la dejamos lista con tu marca y te enviamos la cotización.</p>
       </div>
       <div class="precio-sello rev" style="--d:.2s" aria-label="Demo gratis, sin compromiso">
         <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="arcoSello" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><circle class="sello-aro" cx="100" cy="100" r="72" fill="none" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/><text textLength="512" lengthAdjust="spacing"><textPath href="#arcoSello" textLength="512" lengthAdjust="spacing">DEMO GRATIS • SIN COMPROMISO • DEMO GRATIS • SIN COMPROMISO •</textPath></text></svg>
@@ -687,7 +693,7 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
     <div class="micro-cinta rev">
       <div class="micro-paso"><b>1</b><span>La pruebas con un ejemplo</span></div>
       <div class="micro-paso"><b>2</b><span>Pides tu cotización</span></div>
-      <div class="micro-paso"><b>3</b><span>Te llega tu código y la activas</span></div>
+      <div class="micro-paso"><b>3</b><span>La dejamos lista para tu negocio</span></div>
     </div>
 
     <div class="suscrip rev">
@@ -829,6 +835,7 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
 <a class="ig-btn ig-flota" href="https://www.instagram.com/orbe.apps/" target="_blank" rel="noopener" aria-label="Instagram de Orbe Apps" title="@orbe.apps en Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg></a>
 <div class="fijo" id="fijo"><a class="btn btn-luz" href="#cotizar">Cotizar gratis</a></div>
 
+<script>(() => { const n = document.querySelector('.nav'); const f = () => n.classList.toggle('pegado', scrollY > 10); addEventListener('scroll', f, { passive: true }); f(); })();</script>
 <script>
 const WHATSAPP = "";          // tu número con código de país, solo dígitos, ej. "584121234567"
 const INSTAGRAM = "orbe.apps"; // usuario de Instagram sin @
@@ -938,7 +945,7 @@ document.querySelectorAll('[data-micro]').forEach(b => b.addEventListener('click
 // Debajo de las microapps: la opción de pedirla por correo
 (() => { const av = document.getElementById('aviso-micro'); if (!av || !CORREO) return;
   const p = document.createElement('p'); p.className = 'otro-canal micro-correo';
-  p.innerHTML = '¿No usas Instagram? Pide tu microapp por correo: <a href="mailto:' + CORREO + '?subject=' + encodeURIComponent('Quiero una microapp') + '">' + CORREO + '</a>';
+  p.innerHTML = '¿No usas Instagram? Pide tu cotización por correo: <a href="mailto:' + CORREO + '?subject=' + encodeURIComponent('Quiero cotizar una app') + '">' + CORREO + '</a>';
   av.before(p); })();
 
 // Formulario
