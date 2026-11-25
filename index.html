@@ -389,6 +389,8 @@ footer a { color: var(--luz); }
   .nav-links .btn { display: none; }
   .txt-pc { display: none; }
   .txt-movil { display: inline; }
+  /* El catálogo ya se ve en la portada: aquí queda solo el botón para abrirlo */
+  #catalogo .vivo > div:first-child { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -509,7 +511,7 @@ footer a { color: var(--ink); }
 .btn-correo { background: transparent; color: inherit; border: 1.5px solid currentColor; opacity: .9; }
 .btn-correo:hover { opacity: 1; }
 .otro-canal { font-size: .92rem; opacity: .8; margin: 12px 0 0; }
-.otro-canal a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; word-break: break-all; }
+.otro-canal a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .micro-correo { text-align: center; margin-top: 22px; color: var(--muted); opacity: 1; }
 footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
 </style>
@@ -813,7 +815,7 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
       <label for="negocio">Nombre del negocio<input id="negocio" required placeholder="Ej. Dulce Hogar Repostería" autocomplete="organization"></label>
       <label for="plan">Qué necesitas
         <select id="plan">
-          <option>Microapp lista</option><option>Catálogo con pedidos</option><option>Página de negocio</option><option>Página de reservas</option><option>App a medida</option><option>No sé todavía</option>
+          <option>App lista</option><option>Catálogo con pedidos</option><option>Página de negocio</option><option>Página de reservas</option><option>App a medida</option><option>No sé todavía</option>
         </select>
       </label>
       <label for="detalle">Qué vendes y dónde estás<textarea id="detalle" placeholder="Ej. Tortas y postres en Medellín, hoy vendo por Instagram"></textarea></label>
@@ -931,7 +933,7 @@ if (!quieto && matchMedia('(hover: hover)').matches) document.querySelectorAll('
 
 // Microapps: lista de espera por Instagram con el mensaje copiado
 document.querySelectorAll('[data-micro]').forEach(b => b.addEventListener('click', () => {
-  const texto = `Hola, quiero cotizar la microapp "${b.dataset.micro}".`;
+  const texto = `Hola, quiero cotizar la app "${b.dataset.micro}".`;
   const aviso = document.getElementById('aviso-micro');
   const abrir = () => { location.href = WHATSAPP ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto) : 'https://ig.me/m/' + INSTAGRAM; };
   if (WHATSAPP) return abrir();
