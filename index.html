@@ -182,7 +182,7 @@ section { padding-block: 110px; }
 .sello-centro b { font: 800 2.7rem/1 var(--display); color: #fff; letter-spacing: -.05em; }
 .sello-centro small { font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--verde); }
 @keyframes girar { to { transform: rotate(360deg); } }
-.micro-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.micro-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .micro-app { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 24px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; transition: transform .45s var(--suave), box-shadow .45s; }
 .micro-app::after { content: ""; position: absolute; right: -60px; top: -60px; width: 160px; height: 160px; border-radius: 50%; background: var(--c); opacity: .12; transition: transform .6s var(--suave), opacity .4s; }
 .micro-app:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -34px rgba(26,23,51,.45); }
@@ -659,6 +659,20 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
         <p>Cuánto entra, cuánto sale y cuánto te queda. Con límites por categoría y avisos antes de pasarte.</p>
         <div class="micro-pie"><span class="micro-btns"><a class="btn btn-probar" href="apps/presupuesto/" target="_blank" rel="noopener">Ver ejemplo</a><button class="btn btn-micro" type="button" data-micro="Presupuesto del mes">Cotizar</button></span></div>
       </article>
+      <article class="micro-app rev" style="--c:#e64980;--d:.32s">
+        <div class="micro-ico"><img src="catalogos/icono.svg" alt="" width="58" height="58"></div>
+        <span class="micro-tag">Para vender por WhatsApp</span>
+        <h3>Catálogo con pedidos</h3>
+        <p>Tus productos con foto y precio, carrito y el pedido completo a tu WhatsApp. Ejemplo: Dulce Hogar, venta de tortas.</p>
+        <div class="micro-pie"><span class="micro-btns"><a class="btn btn-probar" href="catalogos/dulce-hogar/" target="_blank" rel="noopener">Ver ejemplo</a><a class="btn btn-micro" href="#cotizar" data-plan="Catálogo con pedidos">Cotizar</a></span></div>
+      </article>
+      <article class="micro-app rev" style="--c:#d6a24e;--d:.4s">
+        <div class="micro-ico"><img src="reservas/icono.svg" alt="" width="58" height="58"></div>
+        <span class="micro-tag">Para reservar citas</span>
+        <h3>Página de reservas</h3>
+        <p>Tus clientes eligen servicio, profesional, día y hora, y te llega la solicitud a WhatsApp. Ejemplo: Barbería El Filo.</p>
+        <div class="micro-pie"><span class="micro-btns"><a class="btn btn-probar" href="reservas/barberia-el-filo/" target="_blank" rel="noopener">Ver ejemplo</a><a class="btn btn-micro" href="#cotizar" data-plan="Página de reservas">Cotizar</a></span></div>
+      </article>
     </div>
 
     <div class="micro-cinta rev">
@@ -786,7 +800,7 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
       <label for="negocio">Nombre del negocio<input id="negocio" required placeholder="Ej. Dulce Hogar Repostería" autocomplete="organization"></label>
       <label for="plan">Qué necesitas
         <select id="plan">
-          <option>Microapp lista</option><option>Catálogo con pedidos</option><option>Página de negocio</option><option>App a medida</option><option>No sé todavía</option>
+          <option>Microapp lista</option><option>Catálogo con pedidos</option><option>Página de negocio</option><option>Página de reservas</option><option>App a medida</option><option>No sé todavía</option>
         </select>
       </label>
       <label for="detalle">Qué vendes y dónde estás<textarea id="detalle" placeholder="Ej. Tortas y postres en Medellín, hoy vendo por Instagram"></textarea></label>
