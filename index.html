@@ -175,9 +175,10 @@ section { padding-block: 110px; }
 .micro-cab { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; margin-bottom: 48px; }
 .gira-suave { background: linear-gradient(90deg, var(--morado), #2fb886, #d98a00, #e0558a, var(--morado)) 0 0 / 200% 100% repeat-x; -webkit-background-clip: text; background-clip: text; color: transparent; animation: brillo 7s linear infinite; }
 .precio-sello { position: relative; width: 190px; height: 190px; display: grid; place-items: center; text-align: center; }
-.precio-sello svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: girar 22s linear infinite; }
-.precio-sello text { font: 800 13px var(--body); letter-spacing: .24em; fill: var(--morado); }
-.precio-sello text { font-size: 12px; letter-spacing: .12em; }
+.precio-sello > svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: girar 22s linear infinite; }
+.precio-sello text { font: 700 11.5px var(--body); letter-spacing: 0; fill: var(--morado); }
+.precio-sello .sello-aro { stroke: var(--morado); opacity: .45; }
+.sello-play { color: var(--verde); margin-bottom: 2px; flex-shrink: 0; }
 .sello-centro { position: relative; width: calc(100% - 64px); aspect-ratio: 1; border-radius: 50%; background: var(--noche); box-shadow: 0 24px 50px -20px rgba(106,92,242,.8); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
 .sello-centro b { font: 800 2.7rem/1 var(--display); color: #fff; letter-spacing: -.05em; }
 .sello-centro small { font-size: .6rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--verde); }
@@ -430,6 +431,8 @@ h2 { font-weight: 800; }
 .precio-sello text { fill: var(--ink); }
 .sello-centro { background: linear-gradient(135deg, #14151c, #2a2560); }
 .sello-centro small { color: #8be0bd; }
+.sello-centro b { font-family: var(--display); font-weight: 800; letter-spacing: -.04em; }
+.sello-play { color: #8be0bd; }
 .micro-paso { border-style: solid; }
 .micro-paso b { background: var(--ink); font-family: var(--cifra); }
 .suscrip { color: var(--ink); }
@@ -468,7 +471,7 @@ footer { background: transparent; color: var(--muted); border-top: 1px solid rgb
 footer a { color: var(--ink); }
 /* Sin etiquetas en mayúsculas (skill frontend-design) */
 .texto .tipo, .micro-tag, .plan .chip, .hito .dia, .sello-centro small { text-transform: none; letter-spacing: 0; font-weight: 700; }
-.precio-sello text { letter-spacing: .08em; }
+.precio-sello text { letter-spacing: 0; }
 /* Portada: el espacio oscuro con estrellas de antes */
 .portada { --luz: #efeefe; --luz2: #b9b5d9; --noche: #0b0a14; --ink: #efeefe; color: var(--luz); background: radial-gradient(1200px 600px at 75% 30%, #241f55 0%, transparent 60%), #0b0a14; }
 .portada .eti { color: var(--luz) !important; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14); }
@@ -624,9 +627,9 @@ footer .contactos { display: inline-flex; gap: 18px; flex-wrap: wrap; }
         <h2 class="rev" style="--d:.08s">Una app para cada problema.<br><span class="gira-suave">Lista para usar.</span></h2>
         <p class="rev" style="--d:.14s">Herramientas pequeñas que resuelven una sola cosa y la resuelven bien. Mira cómo funcionan con un negocio de ejemplo y, si te sirven, te enviamos la cotización. ¿Quieres una con tu marca o con cambios? Esa la hacemos a medida.</p>
       </div>
-      <div class="precio-sello rev" style="--d:.2s" aria-label="Pruébala gratis, cotización sin compromiso">
-        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="arcoSello" d="M100 100 m-88 0 a88 88 0 1 1 176 0 a88 88 0 1 1 -176 0"/></defs><text textLength="548" lengthAdjust="spacingAndGlyphs"><textPath href="#arcoSello" textLength="548" lengthAdjust="spacingAndGlyphs">PRUÉBALA GRATIS · COTIZACIÓN SIN COMPROMISO ·</textPath></text></svg>
-        <span class="sello-centro"><b>Demo</b><small>gratis</small></span>
+      <div class="precio-sello rev" style="--d:.2s" aria-label="Demo gratis, sin compromiso">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="arcoSello" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><circle class="sello-aro" cx="100" cy="100" r="72" fill="none" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/><text textLength="512" lengthAdjust="spacing"><textPath href="#arcoSello" textLength="512" lengthAdjust="spacing">DEMO GRATIS • SIN COMPROMISO • DEMO GRATIS • SIN COMPROMISO •</textPath></text></svg>
+        <span class="sello-centro"><svg class="sello-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><b>Demo</b><small>gratis</small></span>
       </div>
     </div>
 
