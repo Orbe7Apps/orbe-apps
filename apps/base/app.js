@@ -174,7 +174,7 @@
         titulo: 'Cotiza tu app',
         cuerpo: `${motivo ? `<p class="texto-ayuda" style="font-size:15px">${esc(motivo)}</p>` : ''}
           <label class="campo">¿Ya tienes tu código? Escríbelo aquí<input name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="${Orbe.app.prefijo}-XXXX-XXXX"></label>
-          <div class="tarjeta p" style="display:flex;gap:12px;align-items:center"><img src="icono.svg" alt="" width="52" height="52" style="flex-shrink:0;border-radius:12px;box-shadow:0 10px 20px -12px rgba(20,21,28,.6)"><span><b style="font-size:20px">Pago único</b><br><span class="texto-ayuda">Es tuya para siempre, sin mensualidad. Pide tu cotización por correo o por Instagram y te enviamos tu código.</span></span></div>`,
+          <div class="tarjeta p" style="display:flex;gap:12px;align-items:center"><img src="icono.svg" alt="" width="52" height="52" style="flex-shrink:0;border-radius:12px;box-shadow:0 10px 20px -12px rgba(20,21,28,.6)"><span><b style="font-size:20px">Cotización gratis</b><br><span class="texto-ayuda">Pide tu cotización por correo o por Instagram y te enviamos tu código.</span></span></div>`,
         pie: `<button class="btn principal ancho" type="submit">Activar</button><a class="btn ancho" href="mailto:${CORREO}?subject=${encodeURIComponent('Cotización: ' + Orbe.app.nombre)}&body=${encodeURIComponent('Hola, quiero cotizar la microapp «' + Orbe.app.nombre + '».\n\nMi nombre:\nMi negocio:\nPaís:\n')}">Cotizar por correo</a><a class="btn ancho" href="${IG}" target="_blank" rel="noopener">Cotizar por Instagram</a>`
       });
       const f = d.querySelector('form');
@@ -188,7 +188,7 @@
     guardarLicencia(c) {
       localStorage.setItem('orbe-licencia-' + Orbe.app.id, c.toUpperCase());
       Orbe.cargar(); Orbe.pintarTodo();
-      Orbe.aviso('Tu app quedó activada para siempre. Ya puedes usarla con tu negocio.');
+      Orbe.aviso('Tu app quedó activada. Ya puedes usarla con tu negocio.');
       setTimeout(Orbe.ajustes, 900);
     },
     pintarDemo() {
@@ -288,7 +288,7 @@
       document.getElementById('btn-menu').onclick = Orbe.menu;
       const fab = document.getElementById('fab'); if (fab) fab.onclick = () => app.fab();
       const q = new URLSearchParams(location.search).get('codigo');
-      if (q) { history.replaceState(null, '', location.pathname); if (Orbe.validar(q)) { localStorage.setItem('orbe-licencia-' + app.id, q.toUpperCase()); setTimeout(() => { Orbe.aviso('Tu app quedó activada para siempre. Ya puedes usarla con tu negocio.'); setTimeout(Orbe.ajustes, 900); }, 300); } }
+      if (q) { history.replaceState(null, '', location.pathname); if (Orbe.validar(q)) { localStorage.setItem('orbe-licencia-' + app.id, q.toUpperCase()); setTimeout(() => { Orbe.aviso('Tu app quedó activada. Ya puedes usarla con tu negocio.'); setTimeout(Orbe.ajustes, 900); }, 300); } }
       Orbe.cargar(); Orbe.pintarTodo();
       window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); Orbe._instalar = e; });
       if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
