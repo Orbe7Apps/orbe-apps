@@ -433,6 +433,12 @@ h2 { font-weight: 800; }
 .sello-centro small { color: #8be0bd; }
 .sello-centro b { font-family: var(--display); font-weight: 800; letter-spacing: -.04em; }
 .sello-play { color: #8be0bd; }
+/* Centro del sello: tres piezas en proporción (ícono, palabra y apoyo) */
+.precio-sello .sello-centro { gap: 5px; }
+.precio-sello .sello-centro b { font-size: 1.75rem; line-height: 1; letter-spacing: -.03em; }
+.precio-sello .sello-centro small { font-size: .62rem; line-height: 1; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding-left: .2em; }
+.precio-sello .sello-play { width: 22px; height: 22px; padding: 5px; border-radius: 50%; background: rgba(139,224,189,.16); box-sizing: border-box; margin: 0; }
+@media (max-width: 700px) { .precio-sello .sello-centro { gap: 4px; } .precio-sello .sello-centro b { font-size: 1.4rem; } .precio-sello .sello-centro small { font-size: .55rem; } .precio-sello .sello-play { width: 18px; height: 18px; padding: 4px; } }
 .micro-paso { border-style: solid; }
 .micro-paso b { background: var(--ink); font-family: var(--cifra); }
 .suscrip { color: var(--ink); }
