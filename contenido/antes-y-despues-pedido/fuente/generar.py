@@ -46,7 +46,7 @@ laminas['01'] = f'''<div class="lamina oscura">{estrellas()}
 {pie3(1, True)}</div>'''
 
 pedido = ('<b>Hola, quiero hacer este pedido:</b><br><br>1 × Torta de chocolate (20 porciones), $28<br>12 × Cupcakes decorados, $15<br><br>'
-          '<b>Total: $43</b><br>Entrega: sábado 21, 4 p. m.<br>Zona: El Poblado<br>Pago: transferencia')
+          '<b>Total: $43</b><br>Entrega: sábado 21, 4 p. m.<br>Zona: Bella Vista<br>Pago: transferencia')
 laminas['02'] = f'''<div class="lamina clara">
 <span style="align-self:flex-start;font-weight:800;font-size:30px;color:#12a37a;background:rgba(18,163,122,.12);border:2px solid rgba(18,163,122,.35);padding:10px 24px;border-radius:999px">Después</span>
 <h2 style="font-size:96px;margin-top:34px;max-width:880px">1 mensaje con todo listo</h2>
@@ -56,14 +56,14 @@ laminas['02'] = f'''<div class="lamina clara">
 {pie3(2)}</div>'''
 
 laminas['03'] = f'''<div class="lamina clara">
-<h2 style="font-size:100px;max-width:880px">Tu catálogo con pedidos por WhatsApp</h2>
+<h2 style="font-size:84px;max-width:880px">Tu catálogo con pedidos por WhatsApp</h2>
 <div style="margin-top:56px;display:flex;flex-direction:column;gap:22px">
-<div class="tarjeta" style="margin:0;display:flex;justify-content:space-between;align-items:center;border:3px solid {MORADO}"><span style="font-size:40px;font-weight:700">Pago único</span><b style="font:800 76px Sora;letter-spacing:-.04em">$49</b></div>
+<div class="tarjeta" style="margin:0;border:3px solid {MORADO}"><span style="font-size:32px;font-weight:700;color:#5f5c7a">Antes de decidir, mírala funcionando</span><b style="display:block;margin-top:8px;font:800 58px Sora;letter-spacing:-.04em;color:{MORADO}">Muestra gratis con tus productos</b></div>
 <div class="vs" style="margin-top:12px;gap:22px">
 <div><span class="m" style="background:{MORADO}">{ico(I['ok'],26,'#fff',3)}</span>Listo en 5 días</div>
 <div><span class="m" style="background:{MORADO}">{ico(I['ok'],26,'#fff',3)}</span>Cambias los precios desde el teléfono</div>
-<div><span class="m" style="background:{MORADO}">{ico(I['ok'],26,'#fff',3)}</span>Sin comisiones por pedido</div></div></div>
-<div style="margin-top:auto;margin-bottom:130px;background:{MORADO};color:#fff;border-radius:30px;padding:28px 34px;display:flex;align-items:center;gap:20px;font-size:34px;font-weight:700;line-height:1.3">{ico(I['chat'],48,'#fff')}<span>Cupo para 3 negocios esta semana. Escríbenos por DM.</span></div>
+<div><span class="m" style="background:{MORADO}">{ico(I['ok'],26,'#fff',3)}</span>Pago único, sin comisiones por pedido</div></div></div>
+<div style="margin-top:auto;margin-bottom:130px;background:{MORADO};color:#fff;border-radius:30px;padding:28px 34px;display:flex;align-items:center;gap:20px;font-size:34px;font-weight:700;line-height:1.3">{ico(I['chat'],48,'#fff')}<span>Escríbenos MUESTRA por DM y te armamos una gratis.</span></div>
 {pie3(3)}</div>'''
 
 for k, html in laminas.items():
